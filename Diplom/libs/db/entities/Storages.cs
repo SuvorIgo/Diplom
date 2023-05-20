@@ -15,8 +15,13 @@ namespace Diplom.libs.db.entities
         [Column("storage_id")]
         public int Storage_id { get; set; }
 
+        [Column("name")]
         public string Name { get; set; }
+
+        [Column("location")]
         public string Location { get; set; }
+
+        [Column("accomodation")]
         public int Accommodation { get; set; }
     }
 }

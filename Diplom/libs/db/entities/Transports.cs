@@ -15,10 +15,19 @@ namespace Diplom.libs.db.entities
         [Column("transport_id")]
         public int Transport_id { get; set; }
 
+        [Column("name")]
         public string Name { get; set; }
+
+        [Column("brand")]
         public string Brand { get; set; }
-        public int Load_capacity { get; set; }
-        public int Year_prod { get; set; }
+
+        [Column("load_capacity")]
+        public int LoadCapacity { get; set; }
+
+        [Column("year_prod")]
+        public int YearProd { get; set; }
+
+        [Column("photo")]
         public string? Photo { get; set; }
     }
 }

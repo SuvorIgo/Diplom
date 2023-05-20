@@ -15,10 +15,19 @@ namespace Diplom.libs.db.entities
         [Column("driver_id")]
         public int Driver_id { get; set; }
 
+        [Column("name")]
         public string Name { get; set; }
-        public string Surname { get; set; } 
+
+        [Column("surname")]
+        public string Surname { get; set; }
+
+        [Column("patronymic")]
         public string Patronymic { get; set; }
-        public string Driving_experience { get; set; }
-        public DateTime? Date_adoption { get; set; }
+
+        [Column("driving_experience")]
+        public string DrivingExperience { get; set; }
+
+        [Column("date_adoption")]
+        public DateTime? DateAdoption { get; set; }
     }
 }

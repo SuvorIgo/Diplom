@@ -15,12 +15,25 @@ namespace Diplom.libs.db.entities
         [Column("user_id")]
         public int User_id { get; set; }
 
+        [Column("email")]
         public string Email { get; set; }
+
+        [Column("name")]
         public string Name { get; set; }
+
+        [Column("surname")]
         public string Surname { get; set; }
+
+        [Column("login")]
         public string Login { get; set; }
+
+        [Column("password")]
         public string Password { get; set; }
+
+        [Column("isAdmin")]
         public bool? IsAdmin { get; set; } = false;
+
+        [Column("isManager")]
         public bool? IsManager { get; set; } = false;
     }
 }

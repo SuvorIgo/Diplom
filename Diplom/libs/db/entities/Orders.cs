@@ -15,11 +15,21 @@ namespace Diplom.libs.db.entities
         [Column("order_id")]
         public int Order_id { get; set; }
 
+        [Column("tonnage")]
         public int Tonnage { get; set; }
-        public string Name_company { get; set; }
-        public string Number_phone { get; set; }
-        public string? Point_departure { get; set; }
-        public string? Point_reception { get; set; }
+
+        [Column("name_company")]
+        public string NameCompany { get; set; }
+
+        [Column("number_phone")]
+        public string NumberPhone { get; set; }
+
+        [Column("point_departure")]
+        public string? PointDeparture { get; set; }
+
+        [Column("point_reception")]
+        public string? PointReception { get; set; }
+
         //public int user_id { get; set; } многие-к-одному в Users
     }
 }
