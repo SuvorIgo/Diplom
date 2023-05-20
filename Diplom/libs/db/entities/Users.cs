@@ -21,5 +21,6 @@ namespace Diplom.libs.db.entities
         public string Login { get; set; }
         public string Password { get; set; }
         public bool? IsAdmin { get; set; } = false;
+        public bool? IsManager { get; set; } = false;
     }
 }
