@@ -1,6 +1,7 @@
-using Diplom.AuthorizationAndRegistration;
+﻿using Diplom.AuthorizationAndRegistration;
 using Microsoft.Extensions.Logging;
 using Diplom.libs.db;
+using Diplom.libs.calculator;
 
 namespace Diplom
 {
@@ -29,6 +30,11 @@ namespace Diplom
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            label9.Text = string.Empty;
+            label10.Text = string.Empty;
+
+            toolTip1.SetToolTip(this.label9, "Цена рассчитана примерно на вес, равный 5 тоннам");
+
             using (ApplicationContextDB db = new ApplicationContextDB())
             {
                 var list = db.Users;
@@ -44,13 +50,22 @@ namespace Diplom
             {
                 if (cityArrival != String.Empty)
                 {
+                    var cityDeparturePoints = libs.calculator.Point.GetPointsArrayFromCity(cityDeparture);
+                    var cityArrivalPoints = libs.calculator.Point.GetPointsArrayFromCity(cityArrival);
 
+                    var distance = Distance.GetDistanceBetweenTwoCities(cityDeparturePoints, cityArrivalPoints);
+
+                    var sum = Rates.GetSumOfDistanceAndCargo(distance);
+
+                    label9.BackColor = Color.GreenYellow;
+                    label9.Text = $"{sum} ₽ 🛈";
+                    label10.Text = "Для осуществления поставки\nнеобходимо зарегистрироваться";
                 }
                 else
-                    MessageBox.Show("��� �������� ���������� ������ ����� ��������");
+                    MessageBox.Show("Для рассчета необходимо ввести город прибытия");
             }
             else
-                MessageBox.Show("��� �������� ���������� ������ ����� �����������");
+                MessageBox.Show("Для рассчета необходимо ввести город отправления");
         }
     }
 }

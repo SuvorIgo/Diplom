@@ -61,7 +61,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAaAAAAE4CAYAAAAdAyd3AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAA/7JJREFUeF7s/XvwbWtd3/ma7SZqF5HWnJMQ0Uib06ACtlG5CLHNNh1RD0Y9hqhp
+        DAAACwwBP0AiyAAA/7JJREFUeF7s/XvwbWtd3/ma7SZqF5HWnJMQ0Uib06ACtlG5CLHNNh1RD0Y9hqhp
         SqxUt2CTY0zsJJTGuyCJHhol6dJGLYyN1Wr+AKNYtLHEjm20y0ZNVNQQRJEoKiBsDXuv9Vtrnef1neMz
         13eO35i/+7qPPz41xhzXZzyX7/v5fp9njPk+z/yyZ+3o2rVrf2LVqttJ8zq66tZqqYxWrTqL1sq06p7V
         knFdtdFSfl2Q7ptp6ZhVd6cOlfkKoLtDvUEfKuS27XZTT+Oqe1dLdeMsOu56/Z6rdnWaPOp5uu+8pW2H
@@ -1543,7 +1543,7 @@
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAuIAAAJFCAYAAACY+pJpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAA/7JJREFUeF7s/X/MdWt614dVlfpfU6n5o0UoUlKFoiolaqLKiSWLOIK0gJJgCIXK
+        DAAACwwBP0AiyAAA/7JJREFUeF7s/X/MdWt614dVlfpfU6n5o0UoUlKFoiolaqLKiSWLOIK0gJJgCIXK
         /WGKaYiKXerQIgxVMSo2Y+oqtgU1DpgYMNB6TAO2gxs8xNRm+GnGgxk8NjNnpmfGnvF4GM8Pz8yB8YDf
         rs/93J/1fPf1XGvv/bzv87znvO+5j/TRdd3Xfa+119577bU+733uvZ//2q/6qn9vsVgsFovFYrFYPGfa
         4mKxWCwWi8VisXhc2uJisVgsFovFYrF4XNriYrFYLBaLxWKxeFza4mKxWCwWi8VisXhc2uJisVgsFovF
@@ -5966,4 +5966,7 @@
 организаций экономики РФ.
 </value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
