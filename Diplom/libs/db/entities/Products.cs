@@ -13,7 +13,7 @@ namespace Diplom.libs.db.entities
     {
         [Key]
         [Column("product_id")]
-        public int Product_id { get; set; }
+        public int ProductId { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
