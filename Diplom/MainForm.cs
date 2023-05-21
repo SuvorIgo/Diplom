@@ -34,5 +34,23 @@ namespace Diplom
                 var list = db.Users;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var cityDeparture = textBox1.Text.Trim();
+            var cityArrival = textBox2.Text.Trim();
+
+            if (cityDeparture != String.Empty)
+            {
+                if (cityArrival != String.Empty)
+                {
+
+                }
+                else
+                    MessageBox.Show("Для рассчета необходимо ввести город прибытия");
+            }
+            else
+                MessageBox.Show("Для рассчета необходимо ввести город отправления");
+        }
     }
 }

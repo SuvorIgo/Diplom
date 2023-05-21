@@ -216,6 +216,7 @@
             this.button3.TabIndex = 14;
             this.button3.Text = "Рассчитать";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label9
             // 
