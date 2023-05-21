@@ -21,6 +21,8 @@ namespace Diplom.libs.db.entities
         [Column("volume")]
         public int Volume { get; set; }
 
-        //public int storage_id { get; set; } многие-к-одному в Storages
+        [Column("storage_id")]
+        public int StorageId { get; set; }
+        public Storages? Storages { get; set; }
     }
 }

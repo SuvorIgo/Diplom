@@ -35,5 +35,7 @@ namespace Diplom.libs.db.entities
 
         [Column("isManager")]
         public bool? IsManager { get; set; } = false;
+
+        public List<Orders> Orders { get; set; } = new();
     }
 }

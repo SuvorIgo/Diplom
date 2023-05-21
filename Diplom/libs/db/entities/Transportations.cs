@@ -15,8 +15,13 @@ namespace Diplom.libs.db.entities
         [Column("transportation_id")]
         public int Transportation_id { get; set; }
 
-        //public int order_id { get; set; } многие-к-одному в Orders
-        //public int transportDriver_id { get; set; } многие-к-одному в TransportsDrivers
+        [Column("order_id")]
+        public int OrderId { get; set; }
+        public Orders? Orders { get; set; }
+
+        [Column("transportDriver_id")]
+        public int TransportDriverId { get; set; }
+        public TransportsDrivers? transportsDrivers { get; set; }
 
         [Column("tracking_code")]
         public string TrackingCode { get; set; }

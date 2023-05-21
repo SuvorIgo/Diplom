@@ -23,5 +23,7 @@ namespace Diplom.libs.db.entities
 
         [Column("accomodation")]
         public int Accommodation { get; set; }
+
+        public List<Products> Products { get; set; } = new();
     }
 }

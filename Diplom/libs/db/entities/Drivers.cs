@@ -29,5 +29,7 @@ namespace Diplom.libs.db.entities
 
         [Column("date_adoption")]
         public DateTime? DateAdoption { get; set; }
+
+        List<TransportsDrivers> TransportDrivers { get; set; } = new();
     }
 }
