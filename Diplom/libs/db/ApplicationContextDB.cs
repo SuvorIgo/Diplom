@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Diplom.libs.db
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContextDB : DbContext
     {
         public DbSet<Users> Users { get; set; } = null!;
         public DbSet<Drivers> Drivers { get; set; } = null!;
@@ -19,14 +19,20 @@ namespace Diplom.libs.db
         public DbSet<Transportations> Transportations { get; set; } = null!;
         public DbSet<TransportsDrivers> TransportsDrivers { get; set; } = null!;
 
-        public ApplicationContext() 
+        public ApplicationContextDB() 
         {
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=DiplomDB;Trusted_Connection=True;");
+            try
+            {
+                optionsBuilder.UseSqlServer(@"Server=COMPUTER\SQLEXPRESS;Database=DiplomDB;Trusted_Connection=True;TrustServerCertificate=true;");
+            }
+            catch (Exception e)
+            { Console.WriteLine(e); };
+            
         }
     }
 }

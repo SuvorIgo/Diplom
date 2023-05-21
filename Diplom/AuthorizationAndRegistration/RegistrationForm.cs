@@ -59,7 +59,7 @@ namespace Diplom.AuthorizationAndRegistration
                                 {
                                     password = CryptMD5.GetHash(password);
 
-                                    try
+                                    /*try
                                     {
                                         using (SqlConnection conn = DataBase.CreateConnect())
                                         {
@@ -91,7 +91,7 @@ namespace Diplom.AuthorizationAndRegistration
                                     catch (Exception ex)
                                     {
                                         Console.Write(ex);
-                                    }
+                                    }*/
 
                                 }
                                 else

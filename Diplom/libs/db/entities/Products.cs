@@ -21,8 +21,7 @@ namespace Diplom.libs.db.entities
         [Column("volume")]
         public int Volume { get; set; }
 
-        [Column("storage_id")]
-        public int StorageId { get; set; }
+        [ForeignKey("storage_id")]
         public Storages? Storages { get; set; }
     }
 }

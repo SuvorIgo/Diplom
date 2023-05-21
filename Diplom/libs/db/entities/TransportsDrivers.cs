@@ -15,12 +15,10 @@ namespace Diplom.libs.db.entities
         [Column("transportsDriver_id")]
         public int TransportsDriver_id { get; set; }
 
-        [Column("driver_id")]
-        public int DriverId { get; set; }
+        [ForeignKey("driver_id")]
         public Drivers? Drivers { get; set; }
 
-        [Column("transport_id")]
-        public int TransportId { get; set; }
+        [ForeignKey("transport_id")]
         public Transports? Transports { get; set; }
 
         public List<Transportations> Transportations { get; set; } = new();

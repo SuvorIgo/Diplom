@@ -30,8 +30,7 @@ namespace Diplom.libs.db.entities
         [Column("point_reception")]
         public string? PointReception { get; set; }
 
-        [Column("user_id")]
-        public int UserId { get; set; }
+        [ForeignKey("user_id")]
         public Users? Users { get; set; }
 
         public List<Transportations> Transportations { get; set; } = new();

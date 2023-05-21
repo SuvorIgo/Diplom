@@ -1,4 +1,6 @@
 using Diplom.AuthorizationAndRegistration;
+using Microsoft.Extensions.Logging;
+using Diplom.libs.db;
 
 namespace Diplom
 {
@@ -23,6 +25,14 @@ namespace Diplom
             this.Opacity = 0.8;
             regForm.ShowDialog();
             this.Opacity = 1.0;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            using (ApplicationContextDB db = new ApplicationContextDB())
+            {
+                var list = db.Users;
+            }
         }
     }
 }
