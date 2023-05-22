@@ -1,4 +1,7 @@
 ﻿using Diplom.libs.crypt;
+using Diplom.libs.db;
+using Diplom.libs.db.entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,11 +42,11 @@ namespace Diplom.AuthorizationAndRegistration
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var name = textBox1.Text;
-            var surname = textBox2.Text;
-            var login = textBox3.Text;
-            var password = textBox4.Text;
-            var passwordRepeat = textBox5.Text;
+            var name = textBox1.Text.Trim();
+            var surname = textBox2.Text.Trim();
+            var login = textBox3.Text.Trim();
+            var password = textBox4.Text.Trim();
+            var passwordRepeat = textBox5.Text.Trim();
 
             if (name != String.Empty)
             {
@@ -59,39 +62,26 @@ namespace Diplom.AuthorizationAndRegistration
                                 {
                                     password = CryptMD5.GetHash(password);
 
-                                    /*try
+                                    using (var db = new ApplicationContextDB())
                                     {
-                                        using (SqlConnection conn = DataBase.CreateConnect())
+                                        var candidate = db.Users.Where(p => p.Login == login);
+
+                                        if (!candidate.IsNullOrEmpty())
                                         {
-                                            conn.Open();
-
-                                            string getUserByLogin = $"SELECT * FROM Users WHERE login = '{login}'";
-
-                                            SqlCommand commandGetUserByLogin = new SqlCommand(getUserByLogin, conn);
-
-                                            var isTrueReg = commandGetUserByLogin.ExecuteNonQuery().ToString();
-
-                                            if (true)
-                                            {
-                                                MessageBox.Show("Пользователь с таким email уже зарегистрирован");
-                                                login = String.Empty;
-                                            }
-                                            else
-                                            {
-                                                string sqlCommand = $"INSERT INTO Users (name, surname, login, password) VALUES ('{name}', '{surname}', '{login}', '{password}')";
-
-                                                SqlCommand commandReg = new SqlCommand(sqlCommand, conn);
-
-                                                Console.WriteLine(commandReg.ExecuteNonQuery());
-
-                                                this.Close();
-                                            }
+                                            MessageBox.Show("Пользователь с таким логином уже существует");
+                                            return;
                                         }
+
+                                        var user = new Users { Name = name, Surname = surname, Email = login, Login = login, Password = password };
+
+                                        db.Users.Add(user);
+                                        db.SaveChanges();
+
+                                        var authForm = new AuthorizationForm();
+                                        authForm.Show();
+                                        this.Close();
+                                        this.Owner.SendToBack();
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        Console.Write(ex);
-                                    }*/
 
                                 }
                                 else
