@@ -1,4 +1,9 @@
 ﻿using Diplom.libs.crypt;
+using Diplom.libs.db;
+using Diplom.libs.db.entities;
+using Diplom.Properties;
+using Diplom.User;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +38,41 @@ namespace Diplom.AuthorizationAndRegistration
             {
                 if (password != null)
                 {
-                    this.Close();
+                    using (ApplicationContextDB db = new ApplicationContextDB())
+                    {
+                        var candidate = db.Users.Where(p => p.Login == login);
+
+                        if (!candidate.IsNullOrEmpty())
+                            MessageBox.Show("Пользователь с таким логином уже был зарегистрирован");
+                        else
+                        {
+                            var isAuthorization = true;
+
+                            foreach (Users user in candidate)
+                            {
+                                if (user.IsManager == false && user.IsAdmin == false)
+                                {
+                                    var userForm = new UserMainForm();
+                                    userForm.Show();
+                                    this.Close();
+                                }
+                                else if (user.IsManager == true && user.IsAdmin == false)
+                                {
+                                    var managerForm = new ManagerMainFrom();
+                                    managerForm.Show();
+                                    this.Close();
+                                }
+                                else 
+                                {
+                                    var adminForm = new AdminMainForm();
+                                    adminForm.Show();
+                                    this.Close();
+                                }
+                            }
+
+
+                        }
+                    }
                 }
                 else
                     MessageBox.Show("Введите пароль");
