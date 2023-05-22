@@ -61,7 +61,8 @@ namespace Diplom.AuthorizationAndRegistration
                                     var userForm = new UserMainForm();
                                     this.Close();
                                     userForm.Show();
-                                    userForm.IsAuthorization = true;
+                                    userForm.IsAuthorization = isAuthorization;
+                                    this.Owner.Hide();
                                     break;
                                 }
                                 
@@ -70,7 +71,8 @@ namespace Diplom.AuthorizationAndRegistration
                                     var managerForm = new ManagerMainForm();
                                     this.Close();
                                     managerForm.Show();
-                                    managerForm.IsAuthorization = true;
+                                    managerForm.IsAuthorization = isAuthorization;
+                                    this.Owner.Hide();
                                     break;
                                 }
                                 
@@ -79,7 +81,8 @@ namespace Diplom.AuthorizationAndRegistration
                                     var adminForm = new AdminMainForm();
                                     this.Close();
                                     adminForm.Show();
-                                    adminForm.IsAuthorization = true;
+                                    adminForm.IsAuthorization = isAuthorization;
+                                    this.Owner.Hide();
                                     break;
                                 }
                             }
