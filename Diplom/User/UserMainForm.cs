@@ -12,12 +12,19 @@ namespace Diplom.User
 {
     public partial class UserMainForm : Form
     {
+        public bool IsAuthorization { get; set; }
+
         public UserMainForm()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserMainForm_Load(object sender, EventArgs e)
         {
 
         }

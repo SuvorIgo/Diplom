@@ -3,6 +3,8 @@ using Diplom.libs.db;
 using Diplom.libs.db.entities;
 using Diplom.Properties;
 using Diplom.User;
+using Diplom.Manager;
+using Diplom.Admin;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -43,35 +45,47 @@ namespace Diplom.AuthorizationAndRegistration
                         var candidate = db.Users.Where(p => p.Login == login);
 
                         if (!candidate.IsNullOrEmpty())
-                            MessageBox.Show("Пользователь с таким логином уже был зарегистрирован");
-                        else
                         {
                             var isAuthorization = true;
 
                             foreach (Users user in candidate)
                             {
+                                if (!CryptMD5.EqualsHashes(user.Password, CryptMD5.GetHash(password)))
+                                {
+                                    MessageBox.Show("Пароль или логин не верны");
+                                    break;
+                                }
+
                                 if (user.IsManager == false && user.IsAdmin == false)
                                 {
                                     var userForm = new UserMainForm();
+                                    this.Close();
                                     userForm.Show();
-                                    this.Close();
+                                    userForm.IsAuthorization = true;
+                                    break;
                                 }
-                                else if (user.IsManager == true && user.IsAdmin == false)
+                                
+                                if (user.IsManager == true && user.IsAdmin == false)
                                 {
-                                    var managerForm = new ManagerMainFrom();
-                                    managerForm.Show();
+                                    var managerForm = new ManagerMainForm();
                                     this.Close();
+                                    managerForm.Show();
+                                    managerForm.IsAuthorization = true;
+                                    break;
                                 }
-                                else 
+                                
+                                if (user.IsManager == false && user.IsAdmin == true)
                                 {
                                     var adminForm = new AdminMainForm();
-                                    adminForm.Show();
                                     this.Close();
+                                    adminForm.Show();
+                                    adminForm.IsAuthorization = true;
+                                    break;
                                 }
                             }
-
-
                         }
+                        else
+                            MessageBox.Show("Пользователя с таким логином не существует");
                     }
                 }
                 else

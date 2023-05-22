@@ -12,9 +12,16 @@ namespace Diplom.Admin
 {
     public partial class AdminMainForm : Form
     {
+        public bool IsAuthorization { get; set; }
+
         public AdminMainForm()
         {
             InitializeComponent();
+        }
+
+        private void AdminMainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -81,6 +81,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "UserMainForm";
             this.Text = "UserMainForm";
+            this.Load += new System.EventHandler(this.UserMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

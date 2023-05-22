@@ -21,7 +21,7 @@ namespace Diplom.libs.db
 
         public ApplicationContextDB() 
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
