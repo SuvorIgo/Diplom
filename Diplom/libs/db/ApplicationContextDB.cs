@@ -38,11 +38,12 @@ namespace Diplom.libs.db
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
+        {
             modelBuilder.Entity<Users>().HasData(
                 new Users { UserId = 1, Email = "admin@admin.com", Name = "Admin", Surname = "Admin", Login = "admin@admin.com", Password = "21232f297a57a5a743894a0e4a801fc3", IsAdmin = true },
                 new Users { UserId = 2, Email = "manager@manager.com", Name = "Manager", Surname = "Manager", Login = "manager@manager.com", Password = "1d0258c2440a8d19e716292b231e3190", IsManager = true },
-                new Users { UserId = 3, Email = "karina1@mail.ru", Name = "Карина", Surname = "Овчинникова", Login = "karina1@mail.ru", Password = "a37b2a637d2541a600d707648460397e" }
+                new Users { UserId = 3, Email = "karina1@mail.ru", Name = "Карина", Surname = "Овчинникова", Login = "karina1@mail.ru", Password = "a37b2a637d2541a600d707648460397e" },
+                new Users { UserId = 4, Email = "ivan4@mail.ru", Name = "Иван", Surname = "Иванов", Login = "ivan4@mail.ru", Password = "ivan" }
             );
 
             modelBuilder.Entity<Transports>().HasData(
