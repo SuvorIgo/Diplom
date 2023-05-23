@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Diplom.libs.db;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,7 @@ namespace Diplom.User
     public partial class UserMainForm : Form
     {
         public bool IsAuthorization { get; set; }
+        public int IdUser { get; set; }
 
         public UserMainForm()
         {
@@ -21,12 +24,29 @@ namespace Diplom.User
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void UserMainForm_Load(object sender, EventArgs e)
         {
+            panel1.Visible = false;
+            label1.Visible = false;
+            button2.Visible = false;
 
+            using (var db = new ApplicationContextDB())
+            {
+                var candidate = db.Users.FirstOrDefault(p => p.UserId == IdUser);
+
+                var candidateListOrders = db.Orders.Where(p => p.Users!.UserId == candidate.UserId).ToList();
+
+                if (candidateListOrders.IsNullOrEmpty()) 
+                {
+                    panel1.Visible = true;
+                    label1.Visible = true;
+                    button2.Visible = true;
+                    return;
+                }
+            }
         }
     }
 }

@@ -33,8 +33,8 @@ namespace Diplom.AuthorizationAndRegistration
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var login = textBox1.Text;
-            var password = CryptMD5.GetHash(textBox2.Text);
+            var login = textBox1.Text.Trim();
+            var password = textBox2.Text.Trim();
 
             if (login != null)
             {
@@ -50,7 +50,7 @@ namespace Diplom.AuthorizationAndRegistration
 
                             foreach (Users user in candidate)
                             {
-                                if (!CryptMD5.EqualsHashes(user.Password, CryptMD5.GetHash(password)))
+                                if (CryptMD5.EqualsHashes(user.Password, CryptMD5.GetHash(password)) == false)
                                 {
                                     MessageBox.Show("Пароль или логин не верны");
                                     break;
@@ -59,9 +59,10 @@ namespace Diplom.AuthorizationAndRegistration
                                 if (user.IsManager == false && user.IsAdmin == false)
                                 {
                                     var userForm = new UserMainForm();
+                                    userForm.IsAuthorization = isAuthorization;
+                                    userForm.IdUser = user.UserId;
                                     this.Close();
                                     userForm.Show();
-                                    userForm.IsAuthorization = isAuthorization;
                                     this.Owner.Hide();
                                     break;
                                 }
@@ -69,9 +70,10 @@ namespace Diplom.AuthorizationAndRegistration
                                 if (user.IsManager == true && user.IsAdmin == false)
                                 {
                                     var managerForm = new ManagerMainForm();
+                                    managerForm.IsAuthorization = isAuthorization;
+                                    managerForm.IdUser = user.UserId;
                                     this.Close();
                                     managerForm.Show();
-                                    managerForm.IsAuthorization = isAuthorization;
                                     this.Owner.Hide();
                                     break;
                                 }
@@ -79,9 +81,9 @@ namespace Diplom.AuthorizationAndRegistration
                                 if (user.IsManager == false && user.IsAdmin == true)
                                 {
                                     var adminForm = new AdminMainForm();
+                                    adminForm.IsAuthorization = isAuthorization;
                                     this.Close();
                                     adminForm.Show();
-                                    adminForm.IsAuthorization = isAuthorization;
                                     this.Owner.Hide();
                                     break;
                                 }

@@ -17,6 +17,7 @@ namespace Diplom
             var autForm = new AuthorizationForm() { Owner = this };
             this.Opacity = 0.8;
             autForm.ShowDialog();
+            this.Opacity = 1.0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -24,6 +25,7 @@ namespace Diplom
             var regForm = new RegistrationForm() { Owner = this };
             this.Opacity = 0.8;
             regForm.ShowDialog();
+            this.Opacity = 1.0;
         }
 
         private void MainForm_Load(object sender, EventArgs e)

@@ -32,7 +32,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -65,17 +69,52 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(607, 73);
+            this.label4.Location = new System.Drawing.Point(602, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(231, 42);
             this.label4.TabIndex = 8;
             this.label4.Text = "Мои заявки";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(57, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(540, 62);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "На данный момент у вас нет заявок на\r\nосуществление транспортировок";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Location = new System.Drawing.Point(397, 235);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(650, 240);
+            this.panel1.TabIndex = 10;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Brown;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(397, 504);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(650, 64);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Заполнить анкету заявки";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // UserMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 607);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
@@ -83,6 +122,8 @@
             this.Text = "UserMainForm";
             this.Load += new System.EventHandler(this.UserMainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +134,8 @@
         private PictureBox pictureBox1;
         private Button button1;
         private Label label4;
+        private Label label1;
+        private Panel panel1;
+        private Button button2;
     }
 }

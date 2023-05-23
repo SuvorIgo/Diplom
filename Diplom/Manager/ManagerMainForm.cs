@@ -13,6 +13,7 @@ namespace Diplom.Manager
     public partial class ManagerMainForm : Form
     {
         public bool IsAuthorization { get; set; }
+        public int IdUser { get; set; }
 
         public ManagerMainForm()
         {
