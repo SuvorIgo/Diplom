@@ -31,6 +31,8 @@ namespace Diplom.AuthorizationAndRegistration
 
             checkBox1.Checked = false;
 
+            checkBox2.Checked = false;
+
             button1.Enabled = false;
         }
 
@@ -72,15 +74,23 @@ namespace Diplom.AuthorizationAndRegistration
                                             return;
                                         }
 
-                                        var user = new Users { Name = name, Surname = surname, Email = login, Login = login, Password = password };
+                                        Users user;
+
+                                        if (checkBox2.Checked == true)
+                                        {
+                                            user = new Users { Name = name, Surname = surname, Email = login, Login = login, Password = password, IsManager = true };
+                                        }
+                                        else
+                                        {
+                                            user = new Users { Name = name, Surname = surname, Email = login, Login = login, Password = password };
+                                        }
 
                                         db.Users.Add(user);
                                         db.SaveChanges();
 
                                         var authForm = new AuthorizationForm() { Owner = new MainForm() };
-                                        authForm.Show();
+                                        authForm.ShowDialog();
                                         this.Close();
-                                        this.Owner.SendToBack();
                                     }
 
                                 }
@@ -102,5 +112,6 @@ namespace Diplom.AuthorizationAndRegistration
             else
                 MessageBox.Show("Введите имя");
         }
+
     }
 }
