@@ -1,6 +1,7 @@
 ﻿using Diplom.libs.crypt;
 using Diplom.libs.db;
 using Diplom.libs.db.entities;
+using Diplom.Properties;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace Diplom.AuthorizationAndRegistration
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
+            pictureBox1.Image = Resources.hidePas;
+            pictureBox2.Image = Resources.hidePas;
+            textBox5.UseSystemPasswordChar = true;
+            textBox4.UseSystemPasswordChar = true;
+
             textBox1.Text = String.Empty;
             textBox2.Text = String.Empty;
             textBox3.Text = String.Empty;
@@ -113,5 +119,32 @@ namespace Diplom.AuthorizationAndRegistration
                 MessageBox.Show("Введите имя");
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == Resources.hidePas)
+            {
+                textBox5.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.checkPas;
+            }
+            else
+            {
+                textBox5.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.hidePas;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == Resources.hidePas)
+            {
+                textBox4.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.checkPas;
+            }
+            else
+            {
+                textBox4.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.hidePas;
+            }
+        }
     }
 }

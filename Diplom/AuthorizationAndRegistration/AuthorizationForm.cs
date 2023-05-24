@@ -27,6 +27,9 @@ namespace Diplom.AuthorizationAndRegistration
 
         private void AuthorizationForm_Load(object sender, EventArgs e)
         {
+            pictureBox1.Image = Resources.hidePas;
+            textBox2.UseSystemPasswordChar = true;
+
             textBox1.Text = String.Empty;
             textBox2.Text = String.Empty;
         }
@@ -98,6 +101,20 @@ namespace Diplom.AuthorizationAndRegistration
             }
             else
                 MessageBox.Show("Введите логин");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image == Resources.hidePas)
+            {
+                textBox2.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.checkPas;
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = false;
+                pictureBox1.Image = Resources.hidePas;
+            }
         }
     }
 }
