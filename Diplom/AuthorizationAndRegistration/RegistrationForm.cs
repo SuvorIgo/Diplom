@@ -77,7 +77,7 @@ namespace Diplom.AuthorizationAndRegistration
                                         db.Users.Add(user);
                                         db.SaveChanges();
 
-                                        var authForm = new AuthorizationForm();
+                                        var authForm = new AuthorizationForm() { Owner = new MainForm() };
                                         authForm.Show();
                                         this.Close();
                                         this.Owner.SendToBack();

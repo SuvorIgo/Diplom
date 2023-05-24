@@ -44,7 +44,6 @@ namespace Diplom.User
                     panel1.Visible = true;
                     label1.Visible = true;
                     button2.Visible = true;
-                    return;
                 }
             }
         }

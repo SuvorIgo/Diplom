@@ -63,7 +63,6 @@ namespace Diplom.AuthorizationAndRegistration
                                     userForm.IdUser = user.UserId;
                                     this.Close();
                                     userForm.Show();
-                                    this.Owner.Hide();
                                     break;
                                 }
                                 
