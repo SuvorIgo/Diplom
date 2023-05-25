@@ -19,6 +19,7 @@ namespace Diplom.libs.db
         public DbSet<Products> Products { get; set; } = null!;
         public DbSet<Transportations> Transportations { get; set; } = null!;
         public DbSet<TransportsDrivers> TransportsDrivers { get; set; } = null!;
+        public DbSet<Categories> Categories { get; set; } = null!;
 
         public ApplicationContextDB() 
         {

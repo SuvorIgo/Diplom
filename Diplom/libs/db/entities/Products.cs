@@ -23,5 +23,8 @@ namespace Diplom.libs.db.entities
 
         [ForeignKey("storage_id")]
         public Storages? Storages { get; set; }
+
+        [ForeignKey("category_id")]
+        public Categories? Categories { get; set; }
     }
 }
