@@ -28,15 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserMainForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tonnageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameCompanyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pointReceptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -69,7 +78,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(602, 72);
+            this.label4.Location = new System.Drawing.Point(602, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(231, 42);
             this.label4.TabIndex = 8;
@@ -96,6 +105,51 @@
             this.panel1.Size = new System.Drawing.Size(650, 240);
             this.panel1.TabIndex = 10;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tonnageDataGridViewTextBoxColumn,
+            this.nameCompanyDataGridViewTextBoxColumn,
+            this.numberPhoneDataGridViewTextBoxColumn,
+            this.pointReceptionDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.ordersBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(305, 117);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(577, 326);
+            this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // tonnageDataGridViewTextBoxColumn
+            // 
+            this.tonnageDataGridViewTextBoxColumn.DataPropertyName = "Tonnage";
+            this.tonnageDataGridViewTextBoxColumn.HeaderText = "Тоннажность";
+            this.tonnageDataGridViewTextBoxColumn.Name = "tonnageDataGridViewTextBoxColumn";
+            // 
+            // nameCompanyDataGridViewTextBoxColumn
+            // 
+            this.nameCompanyDataGridViewTextBoxColumn.DataPropertyName = "NameCompany";
+            this.nameCompanyDataGridViewTextBoxColumn.HeaderText = "Наименование компании";
+            this.nameCompanyDataGridViewTextBoxColumn.Name = "nameCompanyDataGridViewTextBoxColumn";
+            // 
+            // numberPhoneDataGridViewTextBoxColumn
+            // 
+            this.numberPhoneDataGridViewTextBoxColumn.DataPropertyName = "NumberPhone";
+            this.numberPhoneDataGridViewTextBoxColumn.HeaderText = "Номер телефона";
+            this.numberPhoneDataGridViewTextBoxColumn.Name = "numberPhoneDataGridViewTextBoxColumn";
+            // 
+            // pointReceptionDataGridViewTextBoxColumn
+            // 
+            this.pointReceptionDataGridViewTextBoxColumn.DataPropertyName = "PointReception";
+            this.pointReceptionDataGridViewTextBoxColumn.HeaderText = "Адрес потребителя";
+            this.pointReceptionDataGridViewTextBoxColumn.Name = "pointReceptionDataGridViewTextBoxColumn";
+            // 
+            // ordersBindingSource
+            // 
+            this.ordersBindingSource.DataSource = typeof(Diplom.libs.db.entities.Orders);
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Brown;
@@ -113,6 +167,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 607);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
@@ -125,6 +180,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +195,11 @@
         private Label label1;
         private Panel panel1;
         private Button button2;
+        private DataGridView dataGridView1;
+        private BindingSource ordersBindingSource;
+        private DataGridViewTextBoxColumn tonnageDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameCompanyDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn numberPhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
     }
 }

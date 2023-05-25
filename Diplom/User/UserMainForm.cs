@@ -32,6 +32,7 @@ namespace Diplom.User
             panel1.Visible = false;
             label1.Visible = false;
             button2.Visible = false;
+            dataGridView1.Visible = false;
 
             using (var db = new ApplicationContextDB())
             {
@@ -39,13 +40,24 @@ namespace Diplom.User
 
                 var candidateListOrders = db.Orders.Where(p => p.Users!.UserId == candidate.UserId).ToList();
 
-                if (candidateListOrders.IsNullOrEmpty()) 
+                if (candidateListOrders.IsNullOrEmpty())
                 {
                     panel1.Visible = true;
                     label1.Visible = true;
                     button2.Visible = true;
                 }
+
+                else
+                {
+                    dataGridView1.DataSource = candidateListOrders;
+                    dataGridView1.Visible = true;
+                }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
