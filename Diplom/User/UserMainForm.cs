@@ -30,8 +30,10 @@ namespace Diplom.User
         private void UserMainForm_Load(object sender, EventArgs e)
         {
             panel1.Visible = false;
+            panel2.Visible = false;
+            panel3.Visible = false;
             label1.Visible = false;
-            button2.Visible = false;
+            button2.Visible = true;
             dataGridView1.Visible = false;
 
             using (var db = new ApplicationContextDB())
@@ -56,6 +58,26 @@ namespace Diplom.User
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            panel3.Visible = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

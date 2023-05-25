@@ -27,7 +27,8 @@ namespace Diplom.Manager
 
         private void ManagerMainForm_Load(object sender, EventArgs e)
         {
-
+            panel2.Visible = false;
+            panel3.Visible = false;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,6 +59,9 @@ namespace Diplom.Manager
         private void button2_Click(object sender, EventArgs e)
         {
             var list = Solving.Element.Result();
+
+            panel2.Visible = true;
+            panel3.Visible = true;
 
             //dataGridView2 = Solving.Element.Result();
            

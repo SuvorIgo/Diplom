@@ -30,6 +30,9 @@ namespace Diplom.libs.db.entities
         [Column("point_reception")]
         public string? PointReception { get; set; }
 
+        [Column("progress")]
+        public string? Progress { get; set; }
+
         [ForeignKey("user_id")]
         public Users? Users { get; set; }
 
