@@ -72,11 +72,11 @@ namespace Diplom.AuthorizationAndRegistration
                                 
                                 if (user.IsManager == true && user.IsAdmin == false)
                                 {
-                                    var managerForm = new ManagerMainForm() { Owner = new MainForm() };
-                                    managerForm.IsAuthorization = isAuthorization;
-                                    managerForm.IdUser = user.UserId;
+                                    var managerMenuForm = new ManagerMenu() { Owner = new MainForm() };
+                                    managerMenuForm.IsAuthorization = isAuthorization;
+                                    managerMenuForm.IdUser = user.UserId;
                                     this.Close();
-                                    managerForm.Show();
+                                    managerMenuForm.Show();
                                     this.Owner.Hide();
                                     break;
                                 }

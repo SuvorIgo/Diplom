@@ -23,5 +23,12 @@ namespace Diplom.Manager
             manageFrom.Show();
             this.Close();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            var mainMenu = new MainForm();
+            mainMenu.Show();
+            this.Close();
+        }
     }
 }
