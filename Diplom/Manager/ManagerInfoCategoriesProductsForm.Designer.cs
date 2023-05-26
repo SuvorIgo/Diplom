@@ -51,6 +51,18 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -62,6 +74,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -121,6 +135,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(194, 225);
             this.dataGridView1.TabIndex = 25;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -214,6 +229,7 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 6;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // label3
             // 
@@ -234,6 +250,7 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // label21
             // 
@@ -273,11 +290,138 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(628, 257);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(273, 225);
+            this.panel1.TabIndex = 30;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Brown;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(79, 173);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 34);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Добавить";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(45, 128);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(185, 22);
+            this.textBox1.TabIndex = 29;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(45, 89);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(185, 18);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Наименование категории";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(26, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(219, 24);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Добавление категории";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Location = new System.Drawing.Point(628, 257);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(273, 225);
+            this.panel2.TabIndex = 32;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(142, 77);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(116, 23);
+            this.comboBox1.TabIndex = 33;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(14, 77);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 18);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Категория";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Brown;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(79, 175);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(121, 34);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "Добавить";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(142, 128);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(116, 36);
+            this.textBox2.TabIndex = 29;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(14, 128);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 36);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Наименование\r\nпродукта";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(26, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(209, 24);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Добавление продукта";
+            // 
             // ManagerInfoCategoriesProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 543);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView2);
@@ -302,6 +446,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,5 +478,17 @@
         private PictureBox pictureBox4;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private Panel panel1;
+        private Label label6;
+        private TextBox textBox1;
+        private Label label7;
+        private Button button2;
+        private Panel panel2;
+        private ComboBox comboBox1;
+        private Label label10;
+        private Button button3;
+        private TextBox textBox2;
+        private Label label8;
+        private Label label9;
     }
 }
