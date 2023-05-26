@@ -18,15 +18,11 @@ namespace Diplom.libs.db.entities
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("volume")]
-        public int Volume { get; set; }
-
-        [ForeignKey("storage_id")]
-        public Storages? Storages { get; set; }
-
         [ForeignKey("category_id")]
         public Categories? Categories { get; set; }
 
         public List<Orders> Orders { get; set; } = new();
+
+        public List<ProductsStorages> ProductsStorages { get; set; } = new();
     }
 }
