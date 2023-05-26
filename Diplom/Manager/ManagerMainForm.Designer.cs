@@ -78,6 +78,7 @@
             this.label4.Size = new System.Drawing.Size(148, 42);
             this.label4.TabIndex = 11;
             this.label4.Text = "Заявки";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button1
             // 
@@ -212,13 +213,11 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Открыто",
-            "Закрыто"});
             this.comboBox2.Location = new System.Drawing.Point(183, 62);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
             this.comboBox2.TabIndex = 3;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -232,12 +231,11 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Стекло"});
             this.comboBox1.Location = new System.Drawing.Point(183, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -308,7 +306,7 @@
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(287, 12);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(42, 29);
+            this.pictureBox3.Size = new System.Drawing.Size(33, 29);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 20;
             this.pictureBox3.TabStop = false;
@@ -318,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1347, 543);
+            this.ClientSize = new System.Drawing.Size(892, 543);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

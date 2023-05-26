@@ -1,4 +1,5 @@
 ﻿using Diplom.libs.db;
+using Diplom.libs.db.entities;
 using Diplom.SolvingTransportProblem;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,13 +31,21 @@ namespace Diplom.Manager
             panel2.Visible = false;
             panel3.Visible = false;
 
-            var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
+            var products = db.Products.FromSqlRaw("SELECT * FROM Products").Distinct().ToList();
 
-            comboBox1.DataSource = categories;
+            foreach (var product in products)
+            {
+                comboBox1.Items.Add(product.Name);
+            }
 
-            var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
+            var arrayStatus = new string[3] { "На рассмотрении", "В процессе", "Закрыта" };
 
-            comboBox2.DataSource = products;
+            var i = 0;
+            foreach (var status in arrayStatus)
+            {
+                comboBox2.Items.Add(arrayStatus[i]);
+                i++;
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,6 +118,44 @@ namespace Diplom.Manager
             textBox1.Text += $"{listTwo[4]} ₽\r\n";
             textBox1.Text += $"{listTwo[5]} ₽\r\n";
             textBox1.Text += $"{listTwo[6]} ₽\r\n";
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var nameProduct = comboBox1.SelectedItem.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                List<Orders> currentOrders;
+
+                if (nameProduct == String.Empty)
+                    currentOrders = db.Orders.FromSqlRaw("SELECT * FROM Orders").ToList();
+                else
+                    currentOrders = db.Orders.Where(p => p.Products!.ProductId == (db.Products.Where(p => p.Name == nameProduct).FirstOrDefault().ProductId)).ToList();
+
+                dataGridView1.Update();
+                dataGridView1.DataSource = currentOrders;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var valueStatus = comboBox2.SelectedItem.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                List<Orders> currentOrders;
+
+                currentOrders = db.Orders.Where(p => p.Progress == valueStatus).ToList();
+
+                dataGridView1.Update();
+                dataGridView1.DataSource = currentOrders;
+            }
         }
     }
 }
