@@ -29,6 +29,14 @@ namespace Diplom.Manager
         {
             panel2.Visible = false;
             panel3.Visible = false;
+
+            var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
+
+            comboBox1.DataSource = categories;
+
+            var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
+
+            comboBox2.DataSource = products;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

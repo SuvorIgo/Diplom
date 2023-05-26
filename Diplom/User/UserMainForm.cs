@@ -1,4 +1,6 @@
 ﻿using Diplom.libs.db;
+using Diplom.libs.db.entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -54,6 +56,14 @@ namespace Diplom.User
                     dataGridView1.DataSource = candidateListOrders;
                     dataGridView1.Visible = true;
                 }
+
+                var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
+
+                comboBox1.DataSource = categories;
+
+                var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
+
+                comboBox2.DataSource = products;
             }
         }
 
@@ -80,6 +90,79 @@ namespace Diplom.User
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectItemName = comboBox1.SelectedItem.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var products = db.Products.Where(p => p.Categories!.Name == selectItemName).ToList();
+
+                comboBox2.DataSource = products;
+                comboBox2.Update();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var tonnage = textBox1.Text.Trim();
+            var nameCompany = textBox2.Text.Trim();
+            var numberPhone = textBox3.Text.Trim();
+            var address = textBox4.Text.Trim();
+            var productName = comboBox2.SelectedItem.ToString();
+
+            if (tonnage != String.Empty)
+            {
+                if (nameCompany != String.Empty)
+                {
+                    if (numberPhone != String.Empty)
+                    {
+                        if (address != String.Empty)
+                        {
+                            if (productName != String.Empty)
+                            {
+                                using (var db = new ApplicationContextDB())
+                                {
+                                    var userFromOrder = db.Users.Where(p => p.Users!.UserId == IdUser);
+                                    var productsFromOrder = db.Products.Where(p => p.Name == productName);
+
+                                    Orders order = new Orders
+                                    {
+                                        OrderId = db.Orders.OrderByDescending(p => p.OrderId).FirstOrDefault().OrderId + 1,
+                                        Tonnage = Convert.ToInt32(tonnage),
+                                        NameCompany = nameCompany,
+                                        NumberPhone = numberPhone,
+                                        PointReception = address,
+                                        Progress = "На рассмотрении",
+                                        Users = userFromOrder,
+                                        Products = productsFromOrder
+                                    };
+
+                                    db.Orders.Add(order);
+
+                                    db.SaveChanges();
+
+                                    dataGridView1.Update();
+                                }
+                            }
+                            else
+                                MessageBox.Show("Выберите наименование продукта");
+                        }
+                        else
+                            MessageBox.Show("Введите адрес поставки");
+                    }
+                    else
+                        MessageBox.Show("Введите Ваш номер телефона");
+                }
+                else
+                    MessageBox.Show("Введите наименование компании");
+            }
+            else
+                MessageBox.Show("Введите объем поставки в тоннах");
+
+            
         }
     }
 }

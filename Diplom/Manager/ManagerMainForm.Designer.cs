@@ -318,7 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(891, 543);
+            this.ClientSize = new System.Drawing.Size(1347, 543);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
