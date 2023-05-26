@@ -26,5 +26,7 @@ namespace Diplom.libs.db.entities
 
         [ForeignKey("category_id")]
         public Categories? Categories { get; set; }
+
+        public List<Orders> Orders { get; set; } = new();
     }
 }

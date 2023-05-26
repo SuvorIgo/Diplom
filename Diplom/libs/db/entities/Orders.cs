@@ -36,6 +36,9 @@ namespace Diplom.libs.db.entities
         [ForeignKey("user_id")]
         public Users? Users { get; set; }
 
+        [ForeignKey("product_id")]
+        public Products? Products { get; set; }
+
         public List<Transportations> Transportations { get; set; } = new();
     }
 }
