@@ -59,11 +59,12 @@ namespace Diplom.User
 
                 var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
 
-                comboBox1.DataSource = categories;
+                foreach (var category in categories)
+                {
+                    comboBox1.Items.Add(category.Name);
+                }
 
-                var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
-
-                comboBox2.DataSource = products;
+                
             }
         }
 
@@ -95,14 +96,28 @@ namespace Diplom.User
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectItemName = comboBox1.SelectedItem.ToString();
+            comboBox2.Items.Clear();
 
             using (var db = new ApplicationContextDB())
             {
                 var products = db.Products.Where(p => p.Categories!.Name == selectItemName).ToList();
 
-                comboBox2.DataSource = products;
+                foreach (var product in products)
+                {
+                    comboBox2.Items.Add(product.Name);
+                }
+
                 comboBox2.Update();
             }
+
+            /*var products = db.Products.FromSqlRaw("SELECT Products.* FROM Products, " +
+                    "Categories WHERE Products.category_id = Categories.category_id " +
+                    "WHERE category_id = (SELECT name FROM Categories WHERE name = " + comboBox1.SelectedItem.ToString() + ")").Distinct().ToList();
+
+            foreach (var product in products)
+            {
+                comboBox2.Items.Add(product.Name);
+            }*/
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -125,12 +140,11 @@ namespace Diplom.User
                             {
                                 using (var db = new ApplicationContextDB())
                                 {
-                                    var userFromOrder = db.Users.Where(p => p.Users!.UserId == IdUser);
-                                    var productsFromOrder = db.Products.Where(p => p.Name == productName);
+                                    Users userFromOrder = db.Users.Where(p => p.UserId == IdUser).FirstOrDefault();
+                                    Products productsFromOrder = db.Products.Where(p => p.Name == productName).FirstOrDefault();
 
                                     Orders order = new Orders
-                                    {
-                                        OrderId = db.Orders.OrderByDescending(p => p.OrderId).FirstOrDefault().OrderId + 1,
+                                    { 
                                         Tonnage = Convert.ToInt32(tonnage),
                                         NameCompany = nameCompany,
                                         NumberPhone = numberPhone,
@@ -145,6 +159,15 @@ namespace Diplom.User
                                     db.SaveChanges();
 
                                     dataGridView1.Update();
+
+                                    textBox1.Text = String.Empty;
+                                    textBox2.Text = String.Empty;
+                                    textBox3.Text = String.Empty;
+                                    textBox4.Text = String.Empty;
+                                    comboBox1.SelectedItem = String.Empty;
+                                    comboBox2.SelectedItem = String.Empty;
+
+                                    panel2.Visible = false;
                                 }
                             }
                             else
@@ -163,6 +186,32 @@ namespace Diplom.User
                 MessageBox.Show("Введите объем поставки в тоннах");
 
             
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                //row.Cells.
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            using (var db = new ApplicationContextDB())
+            { 
+                db.SaveChanges();
+            }
         }
     }
 }

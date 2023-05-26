@@ -241,6 +241,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(439, 326);
             this.panel2.TabIndex = 14;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // button3
             // 
@@ -369,7 +370,7 @@
             this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label14);
-            this.panel3.Location = new System.Drawing.Point(149, 140);
+            this.panel3.Location = new System.Drawing.Point(958, 104);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(366, 358);
             this.panel3.TabIndex = 18;
@@ -457,6 +458,7 @@
             this.button4.TabIndex = 15;
             this.button4.Text = "Закрыть";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label12
             // 
@@ -506,6 +508,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // label20
             // 
@@ -525,6 +528,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // UserMainForm
             // 
