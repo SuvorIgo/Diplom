@@ -75,8 +75,8 @@ namespace Diplom.libs.db
             );
 
             modelBuilder.Entity<Products>().HasData(
-                new Products { ProductId = 1, Name = "Песок", Volume = 20 },
-                new Products { ProductId = 2, Name = "Песок", Volume = 10 }
+                new Products { ProductId = 1, Name = "Песок" },
+                new Products { ProductId = 2, Name = "Песок" }
             );
 
             modelBuilder.Entity<Orders>().HasData(

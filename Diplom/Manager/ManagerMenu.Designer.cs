@@ -108,6 +108,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ManagerMenu";
             this.Text = "ManagerMenu";
+            this.Load += new System.EventHandler(this.ManagerMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,5 +16,10 @@ namespace Diplom.Manager
         {
             InitializeComponent();
         }
+
+        private void ManagerInfoCategoriesProductsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

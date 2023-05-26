@@ -12,6 +12,9 @@ namespace Diplom.Manager
 {
     public partial class ManagerMenu : Form
     {
+        public bool IsAuthorization { get; set; }
+        public int IdUser { get; set; }
+
         public ManagerMenu()
         {
             InitializeComponent();
@@ -29,6 +32,11 @@ namespace Diplom.Manager
             var mainMenu = new MainForm();
             mainMenu.Show();
             this.Close();
+        }
+
+        private void ManagerMenu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

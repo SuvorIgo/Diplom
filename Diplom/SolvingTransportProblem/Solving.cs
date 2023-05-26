@@ -39,7 +39,7 @@ namespace Diplom.SolvingTransportProblem
 
                     for (var i = 0; i < products.Count; i++)
                     {
-                        a[i] = products[i].Volume;
+                        //a[i] = products[i].Volume;
                     }
 
                     return a;
