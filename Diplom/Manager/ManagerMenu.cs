@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,13 @@ namespace Diplom.Manager
         {
             var categoriesProductsForm = new ManagerInfoCategoriesProductsForm();
             categoriesProductsForm.Show();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var driversTransportsForm = new ManagerInfoDriversTransportsForm();
+            driversTransportsForm.Show();
             this.Close();
         }
     }
