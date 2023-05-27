@@ -157,5 +157,12 @@ namespace Diplom.Manager
                 dataGridView1.DataSource = currentOrders;
             }
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            var managerMenu = new ManagerMenu();
+            managerMenu.Show();
+            this.Close();
+        }
     }
 }

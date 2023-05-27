@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -152,6 +153,13 @@ namespace Diplom.Manager
                 dataGridView2.DataSource = drivers;
 
             }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            var managerMenu = new ManagerMenu();
+            managerMenu.Show();
+            this.Close();
         }
     }
 }
