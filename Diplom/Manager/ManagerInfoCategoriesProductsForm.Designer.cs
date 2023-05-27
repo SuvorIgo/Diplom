@@ -352,9 +352,9 @@
             this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(628, 257);
+            this.panel2.Location = new System.Drawing.Point(615, 257);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(273, 225);
+            this.panel2.Size = new System.Drawing.Size(286, 225);
             this.panel2.TabIndex = 32;
             // 
             // comboBox1

@@ -51,6 +51,7 @@ namespace Diplom.User
                     panel1.Visible = true;
                     label1.Visible = true;
                     button2.Visible = true;
+                    panel4.Visible = false;
                 }
 
                 else
@@ -65,8 +66,6 @@ namespace Diplom.User
                 {
                     comboBox1.Items.Add(category.Name);
                 }
-
-                
             }
         }
 
@@ -160,7 +159,9 @@ namespace Diplom.User
 
                                     db.SaveChanges();
 
-                                    dataGridView1.Update();
+                                    var orders = db.Orders.FromSqlRaw("SELECT * FROM Orders").ToList();
+
+                                    dataGridView1.DataSource = orders;
 
                                     textBox1.Text = String.Empty;
                                     textBox2.Text = String.Empty;
@@ -202,10 +203,10 @@ namespace Diplom.User
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-            {
-                //row.Cells.
-            }
+            int rowIndex = dataGridView1.CurrentCell.RowIndex;
+            var row = dataGridView1.CurrentCell.Value.ToString();
+
+            dataGridView1.Rows.RemoveAt(rowIndex);
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -213,6 +214,8 @@ namespace Diplom.User
             using (var db = new ApplicationContextDB())
             { 
                 db.SaveChanges();
+
+                MessageBox.Show("Данные сохранены");
             }
         }
     }

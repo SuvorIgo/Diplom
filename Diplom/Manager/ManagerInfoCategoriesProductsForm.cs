@@ -73,11 +73,6 @@ namespace Diplom.Manager
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (var db = new ApplicationContextDB())
-            {
-                
-            }
-
             var nameCategory = comboBox1.SelectedItem.ToString();
             var nameProduct = textBox2.Text.Trim();
 
@@ -91,6 +86,9 @@ namespace Diplom.Manager
 
                         db.Products.Add(product);
                         db.SaveChanges();
+
+                        var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
+                        dataGridView2.DataSource = products;
 
                         panel2.Visible = false;
                     }

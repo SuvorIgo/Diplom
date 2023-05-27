@@ -158,6 +158,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(305, 117);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(577, 326);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -400,7 +401,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(61, 15);
             this.label17.TabIndex = 24;
-            this.label17.Text = "26.05.2023";
+            this.label17.Text = "28.05.2023";
             // 
             // label16
             // 
@@ -409,7 +410,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(61, 15);
             this.label16.TabIndex = 23;
-            this.label16.Text = "23.05.2023";
+            this.label16.Text = "25.05.2023";
             // 
             // label15
             // 
