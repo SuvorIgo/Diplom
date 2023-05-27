@@ -272,6 +272,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // label20
             // 
@@ -291,6 +292,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // panel1
             // 
@@ -352,7 +354,7 @@
             this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(615, 257);
+            this.panel2.Location = new System.Drawing.Point(628, 254);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(286, 225);
             this.panel2.TabIndex = 32;

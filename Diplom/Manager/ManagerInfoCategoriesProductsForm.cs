@@ -64,6 +64,8 @@ namespace Diplom.Manager
 
                     dataGridView1.DataSource = categories;
 
+                    textBox1.Text = String.Empty;
+
                     panel1.Visible = false;
                 }
             }
@@ -89,6 +91,9 @@ namespace Diplom.Manager
 
                         var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
                         dataGridView2.DataSource = products;
+
+                        comboBox1.SelectedValue = String.Empty;
+                        textBox2.Text = String.Empty;
 
                         panel2.Visible = false;
                     }
@@ -135,6 +140,61 @@ namespace Diplom.Manager
             var mainForm = new MainForm();
             mainForm.Show();
             this.Close();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            using (var db = new ApplicationContextDB())
+            {
+                db.SaveChanges();
+
+                MessageBox.Show("Данные сохранены");
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            int n;
+
+            if (dataGridView1.CurrentRow.Selected)
+            {
+                n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+
+                var name = dataGridView1.Rows[n].Cells[0].Value.ToString();
+
+                using (var db = new ApplicationContextDB())
+                {
+                    var category = db.Categories.Where(p => p.Name == name).FirstOrDefault();
+
+                    db.Categories.Remove(category);
+
+                    db.SaveChanges();
+
+                    var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
+
+                    dataGridView1.DataSource = categories;
+                }
+            }
+
+            else
+            {
+                n = Convert.ToInt32(dataGridView2.CurrentRow.Selected);
+
+                var name = dataGridView2.Rows[n].Cells[0].Value.ToString();
+
+                using (var db = new ApplicationContextDB())
+                {
+                    var product = db.Products.Where(p => p.Name == name).FirstOrDefault();
+
+                    db.Products.Remove(product);
+
+                    db.SaveChanges();
+
+                    var products = db.Products.FromSqlRaw("SELECT * FROM Products").ToList();
+
+                    dataGridView2.DataSource = products;
+                }
+            }
         }
     }
 }
