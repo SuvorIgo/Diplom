@@ -135,24 +135,7 @@ namespace Diplom.Manager
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var name = dataGridView1.CurrentCell.Value.ToString();
-
-            using (var db = new ApplicationContextDB())
-            {
-                var transportId = db.Transports.Where(p => p.Name == name).FirstOrDefault().TransportId;
-
-                var driversId = db.TransportsDrivers.Where(p => p.Transports!.TransportId == transportId).ToList();
-
-                List<Drivers> drivers = new List<Drivers>();
-
-                for (int i = 0; i < drivers.Count; i++)
-                {
-                    drivers.Add(db.Drivers.Where(p => p.DriverId == driversId[i].Transports!.TransportId).FirstOrDefault());
-                }
-
-                dataGridView2.DataSource = drivers;
-
-            }
+            
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -167,6 +150,75 @@ namespace Diplom.Manager
             var mainForm = new MainForm();
             mainForm.Show();
             this.Close();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            using (var db = new ApplicationContextDB())
+            {
+                db.SaveChanges();
+
+                MessageBox.Show("Данные сохранены");
+            }
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            using (var db = new ApplicationContextDB())
+            {
+                db.SaveChanges();
+
+                MessageBox.Show("Данные сохранены");
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+
+            var nameModel = dataGridView1.Rows[n].Cells[0].Value.ToString();
+            var nameBrend = dataGridView1.Rows[n].Cells[1].Value.ToString();
+            var capacity = dataGridView1.Rows[n].Cells[2].Value.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var transport = db.Transports.Where(p => p.Name == nameModel &&
+                                                         p.Brand == nameBrend &&
+                                                         p.LoadCapacity == Convert.ToInt32(capacity)).FirstOrDefault();
+
+                db.Transports.Remove(transport);
+
+                db.SaveChanges();
+
+                var transports = db.Transports.FromSqlRaw("SELECT * FROM Transports").ToList();
+
+                dataGridView1.DataSource = transports;
+            }
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            var n = Convert.ToInt32(dataGridView2.CurrentRow.Selected);
+
+            var name = dataGridView2.Rows[n].Cells[0].Value.ToString();
+            var surname = dataGridView2.Rows[n].Cells[1].Value.ToString();
+            var patronymic = dataGridView2.Rows[n].Cells[2].Value.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var driver = db.Drivers.Where(p => p.Name == name &&
+                                                   p.Surname == surname &&
+                                                   p.Patronymic == patronymic).
+                                                   FirstOrDefault();
+
+                db.Drivers.Remove(driver);
+
+                db.SaveChanges();
+
+                var drivers = db.Drivers.FromSqlRaw("SELECT * FROM Drivers").ToList();
+
+                dataGridView2.DataSource = drivers;
+            }
         }
     }
 }

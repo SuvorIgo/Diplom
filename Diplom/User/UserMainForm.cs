@@ -58,6 +58,7 @@ namespace Diplom.User
                 {
                     dataGridView1.DataSource = candidateListOrders;
                     dataGridView1.Visible = true;
+                    panel4.Visible = true;
                 }
 
                 var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
@@ -96,29 +97,7 @@ namespace Diplom.User
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectItemName = comboBox1.SelectedItem.ToString();
-            comboBox2.Items.Clear();
-
-            using (var db = new ApplicationContextDB())
-            {
-                var products = db.Products.Where(p => p.Categories!.Name == selectItemName).ToList();
-
-                foreach (var product in products)
-                {
-                    comboBox2.Items.Add(product.Name);
-                }
-
-                comboBox2.Update();
-            }
-
-            /*var products = db.Products.FromSqlRaw("SELECT Products.* FROM Products, " +
-                    "Categories WHERE Products.category_id = Categories.category_id " +
-                    "WHERE category_id = (SELECT name FROM Categories WHERE name = " + comboBox1.SelectedItem.ToString() + ")").Distinct().ToList();
-
-            foreach (var product in products)
-            {
-                comboBox2.Items.Add(product.Name);
-            }*/
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -162,6 +141,7 @@ namespace Diplom.User
                                     var orders = db.Orders.Where(p => p.Users!.UserId == IdUser).ToList();
 
                                     dataGridView1.DataSource = orders;
+                                   
 
                                     textBox1.Text = String.Empty;
                                     textBox2.Text = String.Empty;
@@ -207,10 +187,23 @@ namespace Diplom.User
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            int rowIndex = dataGridView1.CurrentCell.RowIndex;
-            var row = dataGridView1.CurrentCell.Value.ToString();
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
 
-            dataGridView1.Rows.RemoveAt(rowIndex);
+            var nameCompany = dataGridView1.Rows[n].Cells[1].Value.ToString();
+            var address = dataGridView1.Rows[n].Cells[3].Value.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var order = db.Orders.Where(p => p.NameCompany == nameCompany && p.PointReception == address).FirstOrDefault();
+
+                db.Orders.Remove(order);
+
+                db.SaveChanges();
+
+                var orders = db.Orders.Where(p => p.Users!.UserId == IdUser).ToList();
+
+                dataGridView1.DataSource = orders;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

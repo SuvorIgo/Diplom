@@ -36,11 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tonnageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameCompanyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pointReceptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Progress = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,6 +70,11 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tonnageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameCompanyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pointReceptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Progress = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -162,37 +162,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(577, 326);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // tonnageDataGridViewTextBoxColumn
-            // 
-            this.tonnageDataGridViewTextBoxColumn.DataPropertyName = "Tonnage";
-            this.tonnageDataGridViewTextBoxColumn.HeaderText = "Тоннажность";
-            this.tonnageDataGridViewTextBoxColumn.Name = "tonnageDataGridViewTextBoxColumn";
-            // 
-            // nameCompanyDataGridViewTextBoxColumn
-            // 
-            this.nameCompanyDataGridViewTextBoxColumn.DataPropertyName = "NameCompany";
-            this.nameCompanyDataGridViewTextBoxColumn.HeaderText = "Наименование компании";
-            this.nameCompanyDataGridViewTextBoxColumn.Name = "nameCompanyDataGridViewTextBoxColumn";
-            // 
-            // numberPhoneDataGridViewTextBoxColumn
-            // 
-            this.numberPhoneDataGridViewTextBoxColumn.DataPropertyName = "NumberPhone";
-            this.numberPhoneDataGridViewTextBoxColumn.HeaderText = "Номер телефона";
-            this.numberPhoneDataGridViewTextBoxColumn.Name = "numberPhoneDataGridViewTextBoxColumn";
-            // 
-            // pointReceptionDataGridViewTextBoxColumn
-            // 
-            this.pointReceptionDataGridViewTextBoxColumn.DataPropertyName = "PointReception";
-            this.pointReceptionDataGridViewTextBoxColumn.HeaderText = "Адрес потребителя";
-            this.pointReceptionDataGridViewTextBoxColumn.Name = "pointReceptionDataGridViewTextBoxColumn";
-            // 
-            // Progress
-            // 
-            this.Progress.DataPropertyName = "OrderId";
-            this.Progress.HeaderText = "Прогресс";
-            this.Progress.Name = "Progress";
-            this.Progress.Text = "В процессе";
             // 
             // ordersBindingSource
             // 
@@ -531,6 +500,38 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // tonnageDataGridViewTextBoxColumn
+            // 
+            this.tonnageDataGridViewTextBoxColumn.DataPropertyName = "Tonnage";
+            this.tonnageDataGridViewTextBoxColumn.HeaderText = "Тоннажность";
+            this.tonnageDataGridViewTextBoxColumn.Name = "tonnageDataGridViewTextBoxColumn";
+            // 
+            // nameCompanyDataGridViewTextBoxColumn
+            // 
+            this.nameCompanyDataGridViewTextBoxColumn.DataPropertyName = "NameCompany";
+            this.nameCompanyDataGridViewTextBoxColumn.HeaderText = "Наименование компании";
+            this.nameCompanyDataGridViewTextBoxColumn.Name = "nameCompanyDataGridViewTextBoxColumn";
+            // 
+            // numberPhoneDataGridViewTextBoxColumn
+            // 
+            this.numberPhoneDataGridViewTextBoxColumn.DataPropertyName = "NumberPhone";
+            this.numberPhoneDataGridViewTextBoxColumn.HeaderText = "Номер телефона";
+            this.numberPhoneDataGridViewTextBoxColumn.Name = "numberPhoneDataGridViewTextBoxColumn";
+            // 
+            // pointReceptionDataGridViewTextBoxColumn
+            // 
+            this.pointReceptionDataGridViewTextBoxColumn.DataPropertyName = "PointReception";
+            this.pointReceptionDataGridViewTextBoxColumn.HeaderText = "Адрес потребителя";
+            this.pointReceptionDataGridViewTextBoxColumn.Name = "pointReceptionDataGridViewTextBoxColumn";
+            // 
+            // Progress
+            // 
+            this.Progress.DataPropertyName = "OrderId";
+            this.Progress.HeaderText = "Прогресс";
+            this.Progress.Name = "Progress";
+            this.Progress.Text = "Узнать больше";
+            this.Progress.UseColumnTextForButtonValue = true;
+            // 
             // UserMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -601,11 +602,6 @@
         private Button button4;
         private Label label12;
         private Label label14;
-        private DataGridViewTextBoxColumn tonnageDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameCompanyDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn numberPhoneDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
-        private DataGridViewButtonColumn Progress;
         private Label label18;
         private Label label17;
         private Label label16;
@@ -615,5 +611,10 @@
         private PictureBox pictureBox3;
         private Label label20;
         private PictureBox pictureBox2;
+        private DataGridViewTextBoxColumn tonnageDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameCompanyDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn numberPhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
+        private DataGridViewButtonColumn Progress;
     }
 }
