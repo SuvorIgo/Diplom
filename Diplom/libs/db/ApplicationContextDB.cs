@@ -75,8 +75,7 @@ namespace Diplom.libs.db
             );
 
             modelBuilder.Entity<Products>().HasData(
-                new Products { ProductId = 1, Name = "Песок" },
-                new Products { ProductId = 2, Name = "Песок" }
+                new Products { ProductId = 1, Name = "Песок" }
             );
 
             modelBuilder.Entity<Orders>().HasData(
@@ -87,7 +86,7 @@ namespace Diplom.libs.db
             modelBuilder.Entity<Categories>().HasData(
                 new Categories { CategoryId = 1, Name = "Навалочные и насыпные" },
                 new Categories { CategoryId = 2, Name = "Пылевидные" },
-                new Categories { CategoryId = 3, Name = "Штучные (генеральныу)" },
+                new Categories { CategoryId = 3, Name = "Штучные (генеральные)" },
                 new Categories { CategoryId = 4, Name = "Скоропортящиеся" },
                 new Categories { CategoryId = 5, Name = "Опасные" }
             );

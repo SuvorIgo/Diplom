@@ -36,6 +36,7 @@ namespace Diplom.User
             panel1.Visible = false;
             panel2.Visible = false;
             panel3.Visible = false;
+            panel4.Visible = false;
             label1.Visible = false;
             button2.Visible = true;
             dataGridView1.Visible = false;
@@ -51,7 +52,6 @@ namespace Diplom.User
                     panel1.Visible = true;
                     label1.Visible = true;
                     button2.Visible = true;
-                    panel4.Visible = false;
                 }
 
                 else
@@ -159,7 +159,7 @@ namespace Diplom.User
 
                                     db.SaveChanges();
 
-                                    var orders = db.Orders.FromSqlRaw("SELECT * FROM Orders").ToList();
+                                    var orders = db.Orders.Where(p => p.Users!.UserId == IdUser).ToList();
 
                                     dataGridView1.DataSource = orders;
 
@@ -170,7 +170,11 @@ namespace Diplom.User
                                     comboBox1.SelectedItem = String.Empty;
                                     comboBox2.SelectedItem = String.Empty;
 
+                                    panel4.Visible = true;
                                     panel2.Visible = false;
+                                    panel1.Visible = false;
+
+                                    dataGridView1.Visible = true;
                                 }
                             }
                             else
