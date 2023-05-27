@@ -134,13 +134,11 @@ namespace Diplom.Manager
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var name = dataGridView1.SelectedCells[0].Value.ToString();
-            var nameBrand = dataGridView1.SelectedCells[1].Value.ToString();
-            var capacity = dataGridView1.SelectedCells[2].Value.ToString();
+            var name = dataGridView1.CurrentCell.Value.ToString();
 
             using (var db = new ApplicationContextDB())
             {
-                var transportId = db.Transports.Where(p => p.Name == name && p.Brand == nameBrand && p.LoadCapacity == Convert.ToInt32(capacity)).FirstOrDefault().TransportId;
+                var transportId = db.Transports.Where(p => p.Name == name).FirstOrDefault().TransportId;
 
                 var driversId = db.TransportsDrivers.Where(p => p.Transports!.TransportId == transportId).ToList();
 
