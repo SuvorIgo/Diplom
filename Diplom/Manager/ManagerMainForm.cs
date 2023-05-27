@@ -164,5 +164,12 @@ namespace Diplom.Manager
             managerMenu.Show();
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var mainForm = new MainForm();
+            mainForm.Show();
+            this.Close();
+        }
     }
 }

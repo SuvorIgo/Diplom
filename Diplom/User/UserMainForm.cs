@@ -26,7 +26,9 @@ namespace Diplom.User
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            var mainForm = new MainForm();
+            mainForm.Show();
+            this.Close();
         }
 
         private void UserMainForm_Load(object sender, EventArgs e)
