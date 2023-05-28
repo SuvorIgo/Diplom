@@ -98,8 +98,22 @@ namespace Diplom.User
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox2.Items.Clear();
+
             if (comboBox1.SelectedItem != null)
             {
+                var categoryName = comboBox1.SelectedItem.ToString();
+
+                using (var db = new ApplicationContextDB())
+                {
+                    var products = db.Products.Where(p => p.Categories!.Name == categoryName).ToList();
+
+                    foreach (var product in products)
+                    { 
+                        comboBox2.Items.Add(product.Name);
+                    }
+                }
+
                 comboBox2.Enabled = true;
             }
         }
@@ -145,7 +159,6 @@ namespace Diplom.User
                                     var orders = db.Orders.Where(p => p.Users!.UserId == IdUser).ToList();
 
                                     dataGridView1.DataSource = orders;
-                                   
 
                                     textBox1.Text = String.Empty;
                                     textBox2.Text = String.Empty;
@@ -153,6 +166,8 @@ namespace Diplom.User
                                     textBox4.Text = String.Empty;
                                     comboBox1.SelectedItem = String.Empty;
                                     comboBox2.SelectedItem = String.Empty;
+
+                                    comboBox2.Enabled = false;
 
                                     panel4.Visible = true;
                                     panel2.Visible = false;
