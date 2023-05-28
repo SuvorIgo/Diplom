@@ -28,7 +28,7 @@ namespace Diplom.libs.db.entities
         public string DrivingExperience { get; set; }
 
         [Column("date_adoption")]
-        public DateTime? DateAdoption { get; set; }
+        public DateTime? DateAdoption { get; set; } = DateTime.Now.Date;
 
         public List<TransportsDrivers> TransportsDrivers { get; set; } = new();
     }

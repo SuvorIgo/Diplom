@@ -78,6 +78,7 @@ namespace Diplom.User
         private void button2_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
+            comboBox2.Enabled = false;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -97,7 +98,10 @@ namespace Diplom.User
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (comboBox1.SelectedItem != null)
+            {
+                comboBox2.Enabled = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

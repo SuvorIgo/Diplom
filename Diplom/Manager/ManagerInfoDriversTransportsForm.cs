@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -130,7 +131,66 @@ namespace Diplom.Manager
 
         private void button4_Click(object sender, EventArgs e)
         {
+            var fio = textBox4.Text.Trim();
+            var arrayFio = fio.Split(' ');
 
+            var name = (arrayFio.Length == 3) ? arrayFio[1].ToString() : String.Empty;
+            var surname = (arrayFio.Length == 3) ? arrayFio[0].ToString() : String.Empty;
+            var patronymic = (arrayFio.Length == 3) ? arrayFio[2].ToString() : String.Empty;
+            var stage = (comboBox2.SelectedItem != null) ? comboBox2.SelectedItem.ToString() : String.Empty;
+
+            var transport = (comboBox3.SelectedItem != null) ? comboBox3.SelectedItem.ToString() : String.Empty;
+            var arrayTransport = transport.Trim().Split(' ');
+            var transportName = (comboBox3.SelectedItem != null) ? arrayTransport[0].ToString() : String.Empty;
+            var transportBrand = (comboBox3.SelectedItem != null) ? arrayTransport[1].ToString() : String.Empty;
+            var transportCapacity = (comboBox3.SelectedItem != null) ? arrayTransport[3].ToString() : String.Empty;
+
+            if (fio != String.Empty)
+            {
+                if (arrayFio.Length == 3)
+                {
+                    if (stage != String.Empty)
+                    {
+                        if (transport != String.Empty)
+                        {
+                            using (var db = new ApplicationContextDB())
+                            {
+                                var currentTransport = db.Transports.Where(p => p.Name == transportName &&
+                                                                           p.Brand == transportBrand &&
+                                                                           p.LoadCapacity == Convert.ToInt32(transportCapacity)).
+                                                                           FirstOrDefault();
+
+                                var driver = new Drivers { Name = name, Surname = surname, Patronymic = patronymic, DrivingExperience = stage };
+
+                                var transportdrivers = new TransportsDrivers { Drivers = driver, Transports = currentTransport };
+
+                                db.Drivers.Add(driver);
+                                db.TransportsDrivers.Add(transportdrivers);
+
+                                db.SaveChanges();
+
+                                var drivers = db.Drivers.FromSqlRaw("SELECT * FROM Drivers").ToList();
+
+                                dataGridView2.DataSource = drivers;
+
+                                panel3.Visible = false;
+
+                                textBox4.Text = String.Empty;
+                                comboBox2.Text = String.Empty;
+                                comboBox3.Text = String.Empty;
+                            }
+                        }
+                        else
+                            MessageBox.Show("Выберите транспорт, который водитель будет использовать для траспортировки грузов");
+                    }
+                    else
+                        MessageBox.Show("Выберите опыт вождения водителя");
+                }
+                else
+                    MessageBox.Show("В поле ФИО заданы не все значения");
+            }
+            else
+                MessageBox.Show("Введите ФИО водителя");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
