@@ -21,7 +21,13 @@ namespace Diplom.libs.db.entities
         [ForeignKey("transportsDriver_id")]
         public TransportsDrivers? transportsDrivers { get; set; }
 
-        [Column("tracking_code")]
-        public string TrackingCode { get; set; }
+        [Column("departure_date")]
+        public DateTime DepartureDate { get; set; } = DateTime.Now.Date;
+
+        [Column("arrival_date")]
+        public DateTime ArrivalDate { get; set; }
+
+        [Column("cost")]
+        public int Cost { get; set; }
     }
 }
