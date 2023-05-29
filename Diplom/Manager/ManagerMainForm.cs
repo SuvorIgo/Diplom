@@ -1,8 +1,11 @@
-﻿using Diplom.libs.db;
+﻿using Diplom.libs.calculator;
+using Diplom.libs.db;
 using Diplom.libs.db.entities;
 using Diplom.SolvingTransportProblem;
+using Diplom.SolvingTransportProblem.Rates;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -75,49 +78,35 @@ namespace Diplom.Manager
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var list = Solving.Element.Result();
+            var rowsData = dataGridView1.DataSource;
 
-            panel2.Visible = true;
-            panel3.Visible = true;
+            var listOrders = new List<Orders>();
 
-            //dataGridView2 = Solving.Element.Result();
-           
+            foreach (var obj in (IEnumerable)rowsData)
+            {
+                Orders currentOrder = (Orders)obj;
 
-            dataGridView2.ColumnCount = 3;
-            dataGridView2.RowCount = 3;
+                var pointOrder = currentOrder;
 
-            dataGridView2.Columns[0].Name = "B1";
-            dataGridView2.Columns[1].Name = "B2";
+                listOrders.Add(pointOrder);
+            }
 
-            dataGridView2.Rows[0].Cells[0].Value = list[0];
-            dataGridView2.Rows[0].Cells[1].Value = list[1];
-            dataGridView2.Rows[0].Cells[2].Value = list[2];
+            var nameCargo = comboBox1.SelectedItem.ToString();
 
-            dataGridView2.Rows[1].Cells[0].Value = list[3];
-            dataGridView2.Rows[1].Cells[1].Value = list[4];
-            dataGridView2.Rows[1].Cells[2].Value = list[5];
+            var listStorages = db.Storages.FromSqlRaw("SELECT * FROM Storages").ToList();
 
-            dataGridView2.Rows[2].Cells[0].Value = list[6];
-            dataGridView2.Rows[2].Cells[1].Value = list[7];
+            var listDistanceRates = new List<double>();
 
-            dataGridView2.Update();
-
-            var listTwo = Solving.Element.ResultSum();
-
-            dataGridView3.ColumnCount = 2;
-            dataGridView3.RowCount = 2;
-
-            dataGridView3.Rows[0].Cells[0].Value = listTwo[0];
-            dataGridView3.Rows[0].Cells[1].Value = listTwo[1];
-            dataGridView3.Rows[1].Cells[0].Value = listTwo[2];
-            dataGridView3.Rows[1].Cells[1].Value = listTwo[3];
-
-            dataGridView3.Columns[0].Name = "B1";
-            dataGridView3.Columns[1].Name = "B2";
-
-            textBox1.Text += $"{listTwo[4]} ₽\r\n";
-            textBox1.Text += $"{listTwo[5]} ₽\r\n";
-            textBox1.Text += $"{listTwo[6]} ₽\r\n";
+            for (var i = 0; i < listOrders.Count; i++)
+            {
+                listDistanceRates.Add(DistanceRates.GetSumOfPoints(
+                    Distance.GetDistanceBetweenTwoCities(
+                        libs.calculator.Point.GetPointsArrayFromCity(listStorages[i].Location),
+                        libs.calculator.Point.GetPointsArrayFromCity(listOrders[i].PointReception)
+                        )
+                    )
+                );
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)

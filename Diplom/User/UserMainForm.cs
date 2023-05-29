@@ -152,6 +152,10 @@ namespace Diplom.User
                                         Products = productsFromOrder
                                     };
 
+                                    productsFromOrder.Orders.Add(order);
+
+                                    db.Products.Update(productsFromOrder);
+
                                     db.Orders.Add(order);
 
                                     db.SaveChanges();

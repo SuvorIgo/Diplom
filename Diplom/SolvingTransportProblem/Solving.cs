@@ -1,4 +1,5 @@
 ﻿using Diplom.libs.db;
+using Diplom.libs.db.entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,9 @@ namespace Diplom.SolvingTransportProblem
                 else return a;
             }
 
-            public static int SetCountA()
+            public static int SetCountA(List<Storages> storages)
             {
-                using (var db = new ApplicationContextDB())
-                {
-                    return db.Storages.Count();
-                }
+                return storages.Count;
             }
 
             public static int[] SetArrayA(int n)
@@ -46,12 +44,9 @@ namespace Diplom.SolvingTransportProblem
                 }
             }
 
-            public static int SetCountB()
+            public static int SetCountB(List<Orders> orders)
             {
-                using (var db = new ApplicationContextDB())
-                {
-                    return db.Orders.Count();
-                }
+                return orders.Count;
             }
 
             public static int[] SetArrayB(int m)
