@@ -24,9 +24,6 @@ namespace Diplom.libs.db.entities
         [Column("number_phone")]
         public string NumberPhone { get; set; }
 
-        [Column("point_departure")]
-        public string? PointDeparture { get; set; }
-
         [Column("point_reception")]
         public string? PointReception { get; set; }
 
