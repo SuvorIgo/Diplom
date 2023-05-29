@@ -44,15 +44,15 @@ namespace Diplom.SolvingTransportProblem.Rates
 
             switch (distance)
             {
-                case < 100:
+                case <= 100:
                     sum += 1.10;
                     break;
 
-                case < 200:
+                case <= 200:
                     sum += 2.20;
                     break;
 
-                case < 500:
+                case <= 500:
                     sum += 3.30;
                     break;
 

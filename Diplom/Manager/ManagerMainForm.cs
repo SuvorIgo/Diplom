@@ -93,9 +93,11 @@ namespace Diplom.Manager
 
             var nameCargo = comboBox1.SelectedItem.ToString();
 
-            var listStorages = db.Storages.FromSqlRaw("SELECT * FROM Storages").ToList();
+            var listStorages = db.Storages.FromSqlRaw("SELECT s.* FROM Storages as s JOIN ProductsStorages as ps ON " +
+                                                                "s.storage_id = ps.storage_id JOIN Products as p ON " + 
+                                                                    $"ps.product_id = p.product_id WHERE p.name = '{nameCargo}'").ToList();
 
-            var listDistanceRates = new List<double>();
+            /*var listDistanceRates = new List<double>();
 
             for (var i = 0; i < listOrders.Count; i++)
             {
@@ -106,7 +108,62 @@ namespace Diplom.Manager
                         )
                     )
                 );
+            }*/
+
+            int n = Solving.Element.SetCountA(listStorages);
+            int m = Solving.Element.SetCountB(listOrders);
+
+            var a = Solving.Element.SetArrayA(listStorages);
+            var b = Solving.Element.SetArrayB(listOrders);
+
+            List<double> rates = new List<double>();
+
+            //for (int i = 0; i < n * m; i++)
+            //{
+                for (var j = 0; j < listStorages.Count; j++)
+                {
+                    var currentStorage = listStorages[j];
+
+                    for (var k = 0; k < listOrders.Count; k++)
+                    {
+                        double sum = 0d;
+
+                        var currentOrder = listOrders[k];
+
+                        sum += DistanceRates.GetSumOfPoints(
+                            Distance.GetDistanceBetweenTwoCities(
+                                libs.calculator.Point.GetPointsArrayFromCity(currentStorage.Location),
+                                libs.calculator.Point.GetPointsArrayFromCity(currentOrder.PointReception
+                                )
+                            )
+                        );
+
+                        sum += CargoRates.GetSumOfCargo(currentOrder.Tonnage);
+
+                        rates.Add(sum);
+
+                        sum = 0d;
+                    }
+                }                
+            //}
+
+            var str = Solving.Element.Result(a, b, rates.ToArray());
+
+            int i = 0;
+            foreach (var order in listOrders)
+            { 
+                using (var db = new ApplicationContextDB())
+                {
+                    var transportation = new Transportations { Orders = order, ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
+
+                    db.Transportations.Add(transportation);
+                    db.SaveChanges();
+                }
+                i++;
             }
+
+            panel2.Visible = true;
+            
         }
 
         private void label4_Click(object sender, EventArgs e)

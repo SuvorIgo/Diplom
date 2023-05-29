@@ -9,7 +9,7 @@ namespace Diplom.SolvingTransportProblem.Rates
 {
     public static class CargoRates
     {
-        static int GetFullSumOfCargo(int kilogramm)
+        public static int GetFullSumOfCargo(int kilogramm)
         {
             int sum = 0;
 
@@ -43,25 +43,27 @@ namespace Diplom.SolvingTransportProblem.Rates
             return sum;
         }
 
-        public static double GetSumOfCargo(int kilogramm)
+        public static double GetSumOfCargo(int tonnage)
         {
             double sum = 0;
 
-            switch (kilogramm)
+            var kg = tonnage * 1000;
+
+            switch (kg)
             {
-                case < 10:
+                case <= 10:
                     sum += 30.30;
                     break;
 
-                case < 100:
+                case <= 100:
                     sum += 20.20;
                     break;
 
-                case < 1000:
+                case <= 1000:
                     sum += 15.15;
                     break;
 
-                case < 5000:
+                case <= 5000:
                     sum += 10.10;
                     break;
 
@@ -69,8 +71,12 @@ namespace Diplom.SolvingTransportProblem.Rates
                     sum += 5.50;
                     break;
 
+                case >= 10000:
+                    sum += 3.30;
+                    break;
+
                 default:
-                    sum += kilogramm;
+                    sum += tonnage;
                     break;
             }
 
