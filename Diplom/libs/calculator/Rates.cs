@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diplom.libs.calculator
 {
-    static class Rates
+    public static class Rates
     {
         private static double GetSum(int kilometrazh)
         {

@@ -238,5 +238,13 @@ namespace Diplom.User
                 MessageBox.Show("Данные сохранены");
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+
+            var nameCompany = dataGridView1.Rows[n].Cells[1].Value.ToString();
+            var address = dataGridView1.Rows[n].Cells[3].Value.ToString();
+        }
     }
 }

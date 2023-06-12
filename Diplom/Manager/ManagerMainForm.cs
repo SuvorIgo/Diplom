@@ -154,7 +154,10 @@ namespace Diplom.Manager
             { 
                 using (var db = new ApplicationContextDB())
                 {
-                    var transportation = new Transportations { Orders = order, ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
+                    order.Progress = "В процессе";
+                    db.Orders.Update(order);
+
+                    var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
 
                     db.Transportations.Add(transportation);
                     db.SaveChanges();
