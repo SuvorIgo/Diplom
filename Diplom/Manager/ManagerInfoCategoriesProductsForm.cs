@@ -113,6 +113,18 @@ namespace Diplom.Manager
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
+
+            comboBox1.Items.Clear();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
+
+                foreach (var category in categories)
+                {
+                    comboBox1.Items.Add(category.Name);
+                }
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -124,7 +136,6 @@ namespace Diplom.Manager
                 var products = db.Products.Where(p => p.Categories!.Name == nameCategory).ToList();
 
                 dataGridView2.DataSource = products;
-
             }
         }
 
@@ -156,9 +167,9 @@ namespace Diplom.Manager
         {
             int n;
 
-            if (dataGridView1.CurrentRow.Selected)
+            if (dataGridView1.CurrentRow.Selected != null)
             {
-                n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+                n = Convert.ToInt32(dataGridView1.CurrentRow.Index);
 
                 var name = dataGridView1.Rows[n].Cells[0].Value.ToString();
 
@@ -166,9 +177,27 @@ namespace Diplom.Manager
                 {
                     var category = db.Categories.Where(p => p.Name == name).FirstOrDefault();
 
-                    db.Categories.Remove(category);
+                    var productsOfCategory = db.Products.Where(p => p.Categories.CategoryId == category.CategoryId).ToList();
 
-                    db.SaveChanges();
+                    if (productsOfCategory.Count == 0)
+                    {
+                        db.Categories.Remove(category);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        foreach (var product in productsOfCategory)
+                        {
+                            product.Categories = null;
+
+                            db.Products.Update(product);
+
+                            db.SaveChanges();
+                        }
+
+                        db.Categories.Remove(category);
+                        db.SaveChanges();
+                    }                    
 
                     var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").ToList();
 
@@ -178,7 +207,7 @@ namespace Diplom.Manager
 
             else
             {
-                n = Convert.ToInt32(dataGridView2.CurrentRow.Selected);
+                n = Convert.ToInt32(dataGridView2.CurrentRow.Index);
 
                 var name = dataGridView2.Rows[n].Cells[0].Value.ToString();
 
@@ -195,6 +224,21 @@ namespace Diplom.Manager
                     dataGridView2.DataSource = products;
                 }
             }
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedItem = String.Empty;
+            textBox2.Text = String.Empty;
+
+            panel2.Visible = false;
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = String.Empty;
+
+            panel1.Visible = false;
         }
     }
 }

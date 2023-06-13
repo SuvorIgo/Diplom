@@ -52,11 +52,13 @@
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -75,7 +77,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -296,6 +300,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox8);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label7);
@@ -304,6 +309,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(273, 225);
             this.panel1.TabIndex = 30;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(236, 0);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(37, 35);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 35;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
             // button2
             // 
@@ -340,7 +356,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(26, 26);
+            this.label6.Location = new System.Drawing.Point(33, 38);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(219, 24);
             this.label6.TabIndex = 27;
@@ -348,16 +364,28 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pictureBox7);
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(628, 254);
+            this.panel2.Location = new System.Drawing.Point(615, 257);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(286, 225);
             this.panel2.TabIndex = 32;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(249, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(37, 35);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 34;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // comboBox1
             // 
@@ -452,8 +480,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,5 +524,7 @@
         private TextBox textBox2;
         private Label label8;
         private Label label9;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox8;
     }
 }
