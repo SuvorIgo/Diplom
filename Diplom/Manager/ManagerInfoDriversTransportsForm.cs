@@ -280,5 +280,23 @@ namespace Diplom.Manager
                 dataGridView2.DataSource = drivers;
             }
         }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            textBox4.Text = String.Empty;
+            comboBox2.SelectedItem = String.Empty;
+            comboBox3.SelectedItem = String.Empty;
+
+            panel3.Visible = false;
+        }
+
+        private void pictureBox5_Click_1(object sender, EventArgs e)
+        {
+            textBox1.Text = String.Empty; 
+            textBox2.Text = String.Empty;
+            comboBox1.SelectedItem = String.Empty;
+
+            panel1.Visible = false;
+        }
     }
 }
