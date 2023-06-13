@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -117,6 +118,8 @@ namespace Diplom.Manager
             {
                 comboBox2.Items.Add(i);
             }
+
+            comboBox3.Items.Clear();
 
             using (var db = new ApplicationContextDB())
             {
@@ -234,7 +237,7 @@ namespace Diplom.Manager
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Index);
 
             var nameModel = dataGridView1.Rows[n].Cells[0].Value.ToString();
             var nameBrend = dataGridView1.Rows[n].Cells[1].Value.ToString();
@@ -246,9 +249,25 @@ namespace Diplom.Manager
                                                          p.Brand == nameBrend &&
                                                          p.LoadCapacity == Convert.ToInt32(capacity)).FirstOrDefault();
 
-                db.Transports.Remove(transport);
+                var transportsDriversOfTransport = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).ToList();
 
-                db.SaveChanges();
+                if (transportsDriversOfTransport.Count == 0)
+                {
+                    db.Transports.Remove(transport);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    foreach (var transportDriver in transportsDriversOfTransport)
+                    {
+                        db.TransportsDrivers.Remove(transportDriver);
+
+                        db.SaveChanges();
+                    }
+
+                    db.Transports.Remove(transport);
+                    db.SaveChanges();
+                }
 
                 var transports = db.Transports.FromSqlRaw("SELECT * FROM Transports").ToList();
 
@@ -258,7 +277,7 @@ namespace Diplom.Manager
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            var n = Convert.ToInt32(dataGridView2.CurrentRow.Selected);
+            var n = Convert.ToInt32(dataGridView2.CurrentRow.Index);
 
             var name = dataGridView2.Rows[n].Cells[0].Value.ToString();
             var surname = dataGridView2.Rows[n].Cells[1].Value.ToString();
@@ -271,9 +290,25 @@ namespace Diplom.Manager
                                                    p.Patronymic == patronymic).
                                                    FirstOrDefault();
 
-                db.Drivers.Remove(driver);
+                var transportsDriversOfDriver = db.TransportsDrivers.Where(p => p.Drivers.DriverId == driver.DriverId).ToList();
 
-                db.SaveChanges();
+                if (transportsDriversOfDriver.Count == 0)
+                {
+                    db.Drivers.Remove(driver);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    foreach (var transportDriver in transportsDriversOfDriver)
+                    {
+                        db.TransportsDrivers.Remove(transportDriver);
+
+                        db.SaveChanges();
+                    }
+
+                    db.Drivers.Remove(driver);
+                    db.SaveChanges();
+                }
 
                 var drivers = db.Drivers.FromSqlRaw("SELECT * FROM Drivers").ToList();
 
