@@ -80,9 +80,9 @@ namespace Diplom.SolvingTransportProblem
                 //for (var k = 0; k < rates.Length; k++)
                 //{
                 int countIter = 0;
-                for (var s = 0; s < rates.Length / 2; s++)
+                for (var s = 0; s < n; s++)
                     {
-                        for (var p = 0; p < rates.Length / 2; p++)
+                        for (var p = 0; p < m; p++)
                         {
                             C[s, p].Value = rates[countIter];
                             countIter++;

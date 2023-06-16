@@ -241,10 +241,22 @@ namespace Diplom.User
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Index);
 
+            var tonnage = dataGridView1.Rows[n].Cells[0].Value.ToString();
             var nameCompany = dataGridView1.Rows[n].Cells[1].Value.ToString();
             var address = dataGridView1.Rows[n].Cells[3].Value.ToString();
+            var numberPhone = dataGridView1.Rows[n].Cells[2].Value.ToString();
+
+            using (var db = new ApplicationContextDB())
+            {
+                var currentOrder = db.Orders.Where(p => p.NameCompany == nameCompany &&
+                                                   p.PointReception == address &&
+                                                   p.NumberPhone == numberPhone &&
+                                                   p.Tonnage == Convert.ToInt32(tonnage)).FirstOrDefault();
+
+
+            }
         }
     }
 }
