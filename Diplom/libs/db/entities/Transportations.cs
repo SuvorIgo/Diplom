@@ -22,12 +22,15 @@ namespace Diplom.libs.db.entities
         public TransportsDrivers? transportsDrivers { get; set; }
 
         [Column("departure_date")]
-        public DateTime DepartureDate { get; set; } = DateTime.Now.Date.AddDays(2);
+        public DateTime? DepartureDate { get; set; } = DateTime.Now.Date.AddDays(2);
 
         [Column("arrival_date")]
-        public DateTime ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
 
         [Column("cost")]
-        public int Cost { get; set; }
+        public int? Cost { get; set; }
+
+        [Column("comment")]
+        public string? Comment { get; set; }
     }
 }
