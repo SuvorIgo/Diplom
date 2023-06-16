@@ -389,8 +389,10 @@
             // 
             // label18
             // 
+            this.label18.AutoEllipsis = true;
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(179, 171);
+            this.label18.MaximumSize = new System.Drawing.Size(146, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(146, 30);
             this.label18.TabIndex = 25;

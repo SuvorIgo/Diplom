@@ -210,7 +210,7 @@ namespace Diplom.User
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            var n = Convert.ToInt32(dataGridView1.CurrentRow.Selected);
+            var n = Convert.ToInt32(dataGridView1.CurrentRow.Index);
 
             var nameCompany = dataGridView1.Rows[n].Cells[1].Value.ToString();
             var address = dataGridView1.Rows[n].Cells[3].Value.ToString();
@@ -256,6 +256,15 @@ namespace Diplom.User
                                                    p.Tonnage == Convert.ToInt32(tonnage)).FirstOrDefault();
 
                 label11.Text = currentOrder.Progress;
+
+                var currentTransportation = db.Transportations.Where(p => p.Orders.OrderId == currentOrder.OrderId).FirstOrDefault();
+
+                label16.Text = currentTransportation.DepartureDate.Date.ToString();
+                label17.Text = currentTransportation.ArrivalDate.Date.ToString();
+                label18.Text = address;
+                label19.Text = currentTransportation.Cost.ToString();
+
+                label18.MaximumSize = new Size(146, 0);
             }
         }
     }
