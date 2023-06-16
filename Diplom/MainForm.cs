@@ -1,5 +1,4 @@
 ﻿using Diplom.AuthorizationAndRegistration;
-using Microsoft.Extensions.Logging;
 using Diplom.libs.db;
 using Diplom.libs.calculator;
 
@@ -38,6 +37,15 @@ namespace Diplom
             using (ApplicationContextDB db = new ApplicationContextDB())
             {
                 var list = db.Users;
+
+                var listOrders = db.Orders.ToList();
+
+                foreach (var order in listOrders)
+                {
+                    var currentTransportation = db.Transportations.Where(p => p.Orders.OrderId == order.OrderId).FirstOrDefault();
+
+                    if (currentTransportation.ArrivalDate >= DateTime.Now)
+                        order.Progress = "Закрыто";    }
             }
         }
 
