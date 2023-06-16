@@ -464,6 +464,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ManagerInfoCategoriesProductsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManagerInfoCategoriesProductsForm";
             this.Load += new System.EventHandler(this.ManagerInfoCategoriesProductsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

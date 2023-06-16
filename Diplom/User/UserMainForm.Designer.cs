@@ -127,7 +127,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(57, 87);
+            this.label1.Location = new System.Drawing.Point(31, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(540, 62);
             this.label1.TabIndex = 9;
@@ -139,9 +139,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label1);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel1.Location = new System.Drawing.Point(397, 235);
+            this.panel1.Location = new System.Drawing.Point(305, 203);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(650, 240);
+            this.panel1.Size = new System.Drawing.Size(599, 240);
             this.panel1.TabIndex = 10;
             // 
             // dataGridView1
@@ -155,7 +155,7 @@
             this.pointReceptionDataGridViewTextBoxColumn,
             this.Progress});
             this.dataGridView1.DataSource = this.ordersBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(305, 117);
+            this.dataGridView1.Location = new System.Drawing.Point(309, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -205,9 +205,9 @@
             this.button2.BackColor = System.Drawing.Color.Brown;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(397, 504);
+            this.button2.Location = new System.Drawing.Point(263, 504);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(650, 64);
+            this.button2.Size = new System.Drawing.Size(823, 64);
             this.button2.TabIndex = 11;
             this.button2.Text = "Заполнить анкету заявки";
             this.button2.UseVisualStyleBackColor = false;
@@ -383,18 +383,18 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(179, 253);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(46, 15);
+            this.label19.Size = new System.Drawing.Size(52, 15);
             this.label19.TabIndex = 26;
-            this.label19.Text = "53678 ₽";
+            this.label19.Text = "146300 ₽";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(179, 171);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(130, 45);
+            this.label18.Size = new System.Drawing.Size(146, 30);
             this.label18.TabIndex = 25;
-            this.label18.Text = "проезд М-1, 1Ж,\r\nСтарый Оскол,\r\nБелгородская область";
+            this.label18.Text = "Советский проспект, 148,\r\nВологда";
             // 
             // label17
             // 
@@ -403,7 +403,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(61, 15);
             this.label17.TabIndex = 24;
-            this.label17.Text = "28.05.2023";
+            this.label17.Text = "18.06.2023";
             // 
             // label16
             // 
@@ -412,7 +412,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(61, 15);
             this.label16.TabIndex = 23;
-            this.label16.Text = "25.05.2023";
+            this.label16.Text = "16.06.2023";
             // 
             // label15
             // 
@@ -543,8 +543,8 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);

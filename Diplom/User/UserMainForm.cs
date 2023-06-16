@@ -255,7 +255,7 @@ namespace Diplom.User
                                                    p.NumberPhone == numberPhone &&
                                                    p.Tonnage == Convert.ToInt32(tonnage)).FirstOrDefault();
 
-
+                label11.Text = currentOrder.Progress;
             }
         }
     }

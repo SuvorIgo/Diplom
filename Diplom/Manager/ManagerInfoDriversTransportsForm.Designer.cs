@@ -665,6 +665,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ManagerInfoDriversTransportsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManagerInfoDriversTransportsForm";
             this.Load += new System.EventHandler(this.ManagerInfoDriversTransportsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
