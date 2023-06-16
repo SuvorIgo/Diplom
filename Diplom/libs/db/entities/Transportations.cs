@@ -22,7 +22,7 @@ namespace Diplom.libs.db.entities
         public TransportsDrivers? transportsDrivers { get; set; }
 
         [Column("departure_date")]
-        public DateTime DepartureDate { get; set; } = DateTime.Now.Date;
+        public DateTime DepartureDate { get; set; } = DateTime.Now.Date.AddDays(2);
 
         [Column("arrival_date")]
         public DateTime ArrivalDate { get; set; }
