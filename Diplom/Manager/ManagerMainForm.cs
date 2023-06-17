@@ -23,6 +23,7 @@ namespace Diplom.Manager
     {
         public bool IsAuthorization { get; set; }
         public int IdUser { get; set; }
+        private int AverageSpeed { get; } = 70;
 
         public ManagerMainForm()
         {
@@ -182,10 +183,17 @@ namespace Diplom.Manager
                     }
                     else
                     {
+                        var distanceValue = distancesList[i];
+
+                        var hoursDistance = (double)distanceValue / AverageSpeed;
+
                         order.Progress = "В процессе";
                         db.Orders.Update(order);
 
-                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                        var arrival = transportation.DepartureDate;
+
+                        transportation.ArrivalDate = arrival.Value.AddDays(hoursDistance);
 
                         db.Transportations.Add(transportation);
                         db.SaveChanges();
