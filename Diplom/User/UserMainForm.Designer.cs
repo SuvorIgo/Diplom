@@ -59,6 +59,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -362,6 +363,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label22);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.label17);
@@ -377,6 +379,18 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(366, 358);
             this.panel3.TabIndex = 18;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label22.Location = new System.Drawing.Point(103, 117);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(173, 24);
+            this.label22.TabIndex = 27;
+            this.label22.Text = "Данные по заявке";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label22.Visible = false;
             // 
             // label19
             // 
@@ -619,5 +633,6 @@
         private DataGridViewTextBoxColumn numberPhoneDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
         private DataGridViewButtonColumn Progress;
+        private Label label22;
     }
 }

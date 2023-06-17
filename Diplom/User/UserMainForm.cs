@@ -259,12 +259,45 @@ namespace Diplom.User
 
                 var currentTransportation = db.Transportations.Where(p => p.Orders.OrderId == currentOrder.OrderId).FirstOrDefault();
 
-                label16.Text = currentTransportation.DepartureDate.Value.ToString("dd/MM/yyyy");
-                label17.Text = currentTransportation.ArrivalDate.Value.Date.ToString("dd/MM/yyyy");
-                label18.Text = address;
-                label19.Text = currentTransportation.Cost.ToString() + " ₽";
+                if (currentTransportation.DepartureDate == null && currentTransportation.ArrivalDate == null && currentTransportation.Cost == null)
+                {
+                    label22.Text = currentTransportation.Comment.ToString();
 
-                label18.MaximumSize = new Size(146, 0);
+                    label22.MaximumSize = new Size(200, 0);
+
+                    label22.Visible = true;
+
+                    label16.Visible = false;
+                    label17.Visible = false;
+                    label18.Visible = false;
+                    label19.Visible = false;
+
+                    label14.Visible = false;
+                    label10.Visible = false;
+                    label13.Visible = false;
+                    label15.Visible = false;
+                }
+                else
+                {
+                    label22.Visible = false;
+
+                    label16.Visible = true;
+                    label17.Visible = true;
+                    label18.Visible = true;
+                    label19.Visible = true;
+
+                    label14.Visible = true;
+                    label10.Visible = true;
+                    label13.Visible = true;
+                    label15.Visible = true;
+
+                    label16.Text = currentTransportation.DepartureDate.Value.ToString("dd/MM/yyyy");
+                    label17.Text = currentTransportation.ArrivalDate.Value.Date.ToString("dd/MM/yyyy");
+                    label18.Text = address;
+                    label19.Text = currentTransportation.Cost.ToString() + " ₽";
+
+                    label18.MaximumSize = new Size(146, 0);
+                }
             }
         }
     }
