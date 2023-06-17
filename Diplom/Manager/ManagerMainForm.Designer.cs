@@ -56,6 +56,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
@@ -202,13 +204,15 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBox3);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(287, 95);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(339, 98);
+            this.panel1.Size = new System.Drawing.Size(458, 98);
             this.panel1.TabIndex = 17;
             // 
             // comboBox2
@@ -313,6 +317,23 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(352, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Категория";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(321, 44);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 23);
+            this.comboBox3.TabIndex = 5;
+            // 
             // ManagerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -381,5 +402,7 @@
         private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Progress;
         private PictureBox pictureBox3;
+        private ComboBox comboBox3;
+        private Label label7;
     }
 }

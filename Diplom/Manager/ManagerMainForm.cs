@@ -41,7 +41,7 @@ namespace Diplom.Manager
                 comboBox1.Items.Add(product.Name);
             }
 
-            var arrayStatus = new string[3] { "На рассмотрении", "В процессе", "Закрыта" };
+            var arrayStatus = new string[4] { "На рассмотрении", "В процессе", "Закрыта", "Отменено" };
 
             var i = 0;
             foreach (var status in arrayStatus)
@@ -117,6 +117,7 @@ namespace Diplom.Manager
             var b = Solving.Element.SetArrayB(listOrders);
 
             List<double> rates = new List<double>();
+            List<int> distancesList = new List<int>();
 
             //for (int i = 0; i < n * m; i++)
             //{
@@ -130,12 +131,15 @@ namespace Diplom.Manager
 
                         var currentOrder = listOrders[k];
 
+                        var distance = Distance.GetDistanceBetweenTwoCities(
+                            libs.calculator.Point.GetPointsArrayFromCity(currentStorage.Location),
+                            libs.calculator.Point.GetPointsArrayFromCity(currentOrder.PointReception)
+                        );
+
+                        distancesList.Add(distance);
+
                         sum += DistanceRates.GetSumOfPoints(
-                            Distance.GetDistanceBetweenTwoCities(
-                                libs.calculator.Point.GetPointsArrayFromCity(currentStorage.Location),
-                                libs.calculator.Point.GetPointsArrayFromCity(currentOrder.PointReception
-                                )
-                            )
+                            distance
                         );
 
                         sum += CargoRates.GetSumOfCargo(currentOrder.Tonnage);
@@ -154,13 +158,31 @@ namespace Diplom.Manager
             { 
                 using (var db = new ApplicationContextDB())
                 {
-                    order.Progress = "В процессе";
-                    db.Orders.Update(order);
+                    var idsProducts = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Скоропортящиеся").FirstOrDefault()).ToList();
 
-                    var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
+                    if (idsProducts.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    {
+                        if (distancesList[i] > 800)
+                        {
+                            order.Progress = "Отменено";
+                            db.Orders.Update(order);
 
-                    db.Transportations.Add(transportation);
-                    db.SaveChanges();
+                            var skTransportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), DepartureDate = null, Comment = "Извините, мы не можем доставить скоропортящуюся продукцию на данный адрес" };
+
+                            db.Transportations.Add(skTransportation);
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        order.Progress = "В процессе";
+                        db.Orders.Update(order);
+
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), ArrivalDate = new DateTime(2023, 05, 31).Date, Cost = Convert.ToInt32(str[i]) };
+
+                        db.Transportations.Add(transportation);
+                        db.SaveChanges();
+                    }
                 }
                 i++;
             }

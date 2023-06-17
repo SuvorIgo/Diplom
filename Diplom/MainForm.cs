@@ -44,8 +44,17 @@ namespace Diplom
                 {
                     var currentTransportation = db.Transportations.Where(p => p.Orders.OrderId == order.OrderId).FirstOrDefault();
 
-                    if (currentTransportation.ArrivalDate >= DateTime.Now)
-                        order.Progress = "Закрыто";    }
+                    if (currentTransportation != null && 
+                       currentTransportation.ArrivalDate != null &&
+                       DateTime.Now >= currentTransportation.ArrivalDate.Value
+                       )
+                    {
+                        order.Progress = "Закрыто";
+
+                        db.Orders.Update(order);
+                        db.SaveChanges();
+                    }
+                }
             }
         }
 

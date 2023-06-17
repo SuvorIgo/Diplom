@@ -259,10 +259,10 @@ namespace Diplom.User
 
                 var currentTransportation = db.Transportations.Where(p => p.Orders.OrderId == currentOrder.OrderId).FirstOrDefault();
 
-                label16.Text = currentTransportation.DepartureDate.Date.ToString();
-                label17.Text = currentTransportation.ArrivalDate.Date.ToString();
+                label16.Text = currentTransportation.DepartureDate.Value.ToString("dd/MM/yyyy");
+                label17.Text = currentTransportation.ArrivalDate.Value.Date.ToString("dd/MM/yyyy");
                 label18.Text = address;
-                label19.Text = currentTransportation.Cost.ToString();
+                label19.Text = currentTransportation.Cost.ToString() + " ₽";
 
                 label18.MaximumSize = new Size(146, 0);
             }
