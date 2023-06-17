@@ -49,6 +49,13 @@ namespace Diplom.Manager
                 comboBox2.Items.Add(arrayStatus[i]);
                 i++;
             }
+
+            var categories = db.Categories.FromSqlRaw("SELECT * FROM Categories").Distinct().ToList();
+
+            foreach (var category in categories)
+            {
+                comboBox3.Items.Add(category.Name);
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,32 +207,66 @@ namespace Diplom.Manager
         {
             var nameProduct = comboBox1.SelectedItem.ToString();
 
-            using (var db = new ApplicationContextDB())
+            if (comboBox2.SelectedItem != null)
             {
                 List<Orders> currentOrders;
 
                 if (nameProduct == String.Empty)
                     currentOrders = db.Orders.FromSqlRaw("SELECT * FROM Orders").ToList();
                 else
-                    currentOrders = db.Orders.Where(p => p.Products!.ProductId == (db.Products.Where(p => p.Name == nameProduct).FirstOrDefault().ProductId)).ToList();
+                    currentOrders = db.Orders.Where(p => p.Products!.ProductId == (db.Products.Where(p => p.Name == nameProduct).FirstOrDefault().ProductId) &&
+                        p.Progress == comboBox2.SelectedItem.ToString()).ToList();
 
                 dataGridView1.Update();
                 dataGridView1.DataSource = currentOrders;
             }
+            else
+            {
+                using (var db = new ApplicationContextDB())
+                {
+                    List<Orders> currentOrders;
+
+                    if (nameProduct == String.Empty)
+                        currentOrders = db.Orders.FromSqlRaw("SELECT * FROM Orders").ToList();
+                    else
+                        currentOrders = db.Orders.Where(p => p.Products!.ProductId == (db.Products.Where(p => p.Name == nameProduct).FirstOrDefault().ProductId)).ToList();
+
+                    dataGridView1.Update();
+                    dataGridView1.DataSource = currentOrders;
+                }
+            }
+
+            
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             var valueStatus = comboBox2.SelectedItem.ToString();
 
-            using (var db = new ApplicationContextDB())
+            if (comboBox1.SelectedItem != null)
             {
-                List<Orders> currentOrders;
+                using (var db = new ApplicationContextDB())
+                {
+                    List<Orders> currentOrders;
 
-                currentOrders = db.Orders.Where(p => p.Progress == valueStatus).ToList();
+                    currentOrders = db.Orders.Where(p => p.Progress == valueStatus &&
+                        p.Products!.ProductId == (db.Products.Where(p => p.Name == comboBox1.SelectedItem.ToString()).FirstOrDefault().ProductId)).ToList();
 
-                dataGridView1.Update();
-                dataGridView1.DataSource = currentOrders;
+                    dataGridView1.Update();
+                    dataGridView1.DataSource = currentOrders;
+                }
+            }
+            else
+            {
+                using (var db = new ApplicationContextDB())
+                {
+                    List<Orders> currentOrders;
+
+                    currentOrders = db.Orders.Where(p => p.Progress == valueStatus).ToList();
+
+                    dataGridView1.Update();
+                    dataGridView1.DataSource = currentOrders;
+                }
             }
         }
 
@@ -241,6 +282,23 @@ namespace Diplom.Manager
             var mainForm = new MainForm();
             mainForm.Show();
             this.Close();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var db = new ApplicationContextDB())
+            {
+                var category = db.Categories.Where(p => p.Name == comboBox3.SelectedItem.ToString()).FirstOrDefault();
+
+                var listProducts = db.Products.Where(p => p.Categories.Name == category.Name).ToList();
+
+                comboBox1.Items.Clear();
+
+                foreach (var product in listProducts)
+                {
+                    comboBox1.Items.Add(product.Name);
+                }
+            }
         }
     }
 }
