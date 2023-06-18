@@ -16,6 +16,14 @@ namespace Diplom.User
 {
     public partial class UserMainForm : Form
     {
+        private string ImageTransport { get; set; }
+        private string ModelTransport { get; set; }
+        private string BrandTransport { get; set; }
+        private string LoadCapacityTransport { get; set; }
+        private string FIODriver { get; set; }
+        private string NameProduct { get; set; }
+        private string DepartureAddress { get; set; }
+
         public bool IsAuthorization { get; set; }
         public int IdUser { get; set; }
 
@@ -303,8 +311,45 @@ namespace Diplom.User
                     label19.Text = currentTransportation.Cost.ToString() + " ₽";
 
                     label18.MaximumSize = new Size(146, 0);
+
+                    var currentTransport = db.Transports.FromSqlRaw("SELECT t.* FROM Transports as t JOIN TransportsDrivers as td ON " +
+                        $"t.transport_id = td.transport_id JOIN Transportations as tr ON " +
+                        $"td.transportsDriver_id = tr.transportsDriver_id WHERE tr.transportation_id = {currentTransportation.TransportationId}").FirstOrDefault();
+
+                    var currentDriver = db.Drivers.FromSqlRaw("SELECT d.* FROM Drivers as d JOIN TransportsDrivers as td ON " +
+                        $"d.driver_id = td.driver_id JOIN Transports as t ON " +
+                        $"td.transport_id = t.transport_id WHERE td.transport_id = {currentTransport.TransportId}").FirstOrDefault();
+
+                    var currentProduct = db.Products.FromSqlRaw("SELECT p.* FROM Products as p JOIN Orders as o ON " +
+                        $"p.product_id = o.product_id WHERE o.order_id = {currentOrder.OrderId}").FirstOrDefault();
+
+                    var currentStorages = db.Storages.FromSqlRaw("SELECT s.* FROM Storages as s JOIN ProductsStorages as ps ON " +
+                        $"s.storage_id = ps.storage_id WHERE ps.product_id = {currentProduct.ProductId}").FirstOrDefault();
+
+                    ImageTransport = currentTransport.Photo;
+                    ModelTransport = currentTransport.Name;
+                    BrandTransport = currentTransport.Brand;
+                    LoadCapacityTransport = (currentTransport.LoadCapacity / 1000).ToString() + " тонн";
+                    FIODriver = currentDriver.Surname + " " + currentDriver.Name + " " + currentDriver.Patronymic;
+                    NameProduct = currentProduct.Name;
+                    DepartureAddress = currentStorages.Location;
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var dopData = new DopData();
+
+            dopData.ImageTransport = ImageTransport;
+            dopData.ModelTransport = ModelTransport;
+            dopData.BrandTransport = BrandTransport;
+            dopData.LoadCapacityTransport = LoadCapacityTransport;
+            dopData.FIODriver = FIODriver;
+            dopData.NameProduct = NameProduct;
+            dopData.DepartureAddress = DepartureAddress;
+
+            dopData.ShowDialog();
         }
     }
 }

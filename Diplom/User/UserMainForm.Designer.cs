@@ -76,6 +76,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -363,6 +364,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button5);
             this.panel3.Controls.Add(this.label22);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.label18);
@@ -471,9 +473,9 @@
             this.button4.BackColor = System.Drawing.Color.Brown;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(65, 297);
+            this.button4.Location = new System.Drawing.Point(17, 297);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(259, 43);
+            this.button4.Size = new System.Drawing.Size(144, 43);
             this.button4.TabIndex = 15;
             this.button4.Text = "Закрыть";
             this.button4.UseVisualStyleBackColor = false;
@@ -548,6 +550,19 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Brown;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(172, 297);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(185, 43);
+            this.button5.TabIndex = 28;
+            this.button5.Text = "Доп. информация";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // UserMainForm
             // 
@@ -634,5 +649,6 @@
         private DataGridViewTextBoxColumn pointReceptionDataGridViewTextBoxColumn;
         private DataGridViewButtonColumn Progress;
         private Label label22;
+        private Button button5;
     }
 }
