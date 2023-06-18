@@ -166,9 +166,15 @@ namespace Diplom.Manager
             { 
                 using (var db = new ApplicationContextDB())
                 {
-                    var idsProducts = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Скоропортящиеся").FirstOrDefault()).ToList();
+                    var listTransports = db.Transports.FromSqlRaw("SELECT * FROM Transports").ToList();
 
-                    if (idsProducts.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    var idsProductsSkor = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Скоропортящиеся").FirstOrDefault()).ToList();
+                    var idsProductsNavalAndNasip = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Навалочные и насыпные").FirstOrDefault()).ToList();
+                    var idsProductsPilev = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Пылевидные").FirstOrDefault()).ToList();
+                    var idsProductsShtuch = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Штучные (генеральные)").FirstOrDefault()).ToList();
+                    var idsProductsOpas = db.Products.Where(p => p.Categories == db.Categories.Where(p => p.Name == "Опасные").FirstOrDefault()).ToList();
+
+                    if (idsProductsSkor.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
                     {
                         if (distancesList[i] > 800)
                         {
@@ -180,6 +186,176 @@ namespace Diplom.Manager
                             db.Transportations.Add(skTransportation);
                             db.SaveChanges();
                         }
+                        else
+                        {
+                            var listTransportSkor = listTransports.Where(p => p.Type == "Рефрижератор").ToList();
+
+                            var tonnage = order.Tonnage;
+
+                            var transport = new Transports();
+
+                            for (var k = 0; k < listTransportSkor.Count(); k++)
+                            {
+                                if (tonnage > listTransportSkor[k].LoadCapacity)
+                                    continue;
+
+                                transport = listTransportSkor[k];
+                            }
+
+                            var currentTransportDrivers = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).FirstOrDefault();
+
+                            var distanceValue = distancesList[i];
+
+                            var hoursDistance = (double)distanceValue / AverageSpeed;
+
+                            order.Progress = "В процессе";
+                            db.Orders.Update(order);
+
+                            var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                            var arrival = transportation.DepartureDate;
+
+                            transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
+                            transportation.transportsDrivers = currentTransportDrivers;
+
+                            db.Transportations.Add(transportation);
+                            db.SaveChanges();
+                        }
+                    }
+                    else if (idsProductsNavalAndNasip.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    {
+                        var listTransportNaval = listTransports.Where(p => p.Type == "Самосвал").ToList();
+
+                        var tonnage = order.Tonnage;
+
+                        var transport = new Transports();
+
+                        for (var k = 0; k < listTransportNaval.Count(); k++)
+                        {
+                            if (tonnage > listTransportNaval[k].LoadCapacity)
+                                continue;
+
+                            transport = listTransportNaval[k];
+                        }
+
+                        var currentTransportDrivers = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).FirstOrDefault();
+
+                        var distanceValue = distancesList[i];
+
+                        var hoursDistance = (double)distanceValue / AverageSpeed;
+
+                        order.Progress = "В процессе";
+                        db.Orders.Update(order);
+
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                        var arrival = transportation.DepartureDate;
+
+                        transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
+                        transportation.transportsDrivers = currentTransportDrivers;
+
+                        db.Transportations.Add(transportation);
+                        db.SaveChanges();
+                    }
+                    else if (idsProductsPilev.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    {
+                        var listTransportPilev = listTransports.Where(p => p.Type == "Тент").ToList();
+
+                        var tonnage = order.Tonnage;
+
+                        var transport = new Transports();
+
+                        for (var k = 0; k < listTransportPilev.Count(); k++)
+                        {
+                            if (tonnage > listTransportPilev[k].LoadCapacity)
+                                continue;
+
+                            transport = listTransportPilev[k];
+                        }
+
+                        var currentTransportDrivers = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).FirstOrDefault();
+
+                        var distanceValue = distancesList[i];
+
+                        var hoursDistance = (double)distanceValue / AverageSpeed;
+
+                        order.Progress = "В процессе";
+                        db.Orders.Update(order);
+
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                        var arrival = transportation.DepartureDate;
+
+                        transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
+                        transportation.transportsDrivers = currentTransportDrivers;
+
+                        db.Transportations.Add(transportation);
+                        db.SaveChanges();
+                    }
+                    else if (idsProductsShtuch.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    {
+                        var listTransportShtuch = listTransports.Where(p => p.Type == "Цельнометалл").ToList();
+
+                        var tonnage = order.Tonnage;
+
+                        var transport = new Transports();
+
+                        for (var k = 0; k < listTransportShtuch.Count(); k++)
+                        {
+                            if (tonnage > listTransportShtuch[k].LoadCapacity)
+                                continue;
+
+                            transport = listTransportShtuch[k];
+                        }
+
+                        var currentTransportDrivers = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).FirstOrDefault();
+
+                        var distanceValue = distancesList[i];
+
+                        var hoursDistance = (double)distanceValue / AverageSpeed;
+
+                        order.Progress = "В процессе";
+                        db.Orders.Update(order);
+
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                        var arrival = transportation.DepartureDate;
+
+                        transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
+                        transportation.transportsDrivers = currentTransportDrivers;
+
+                        db.Transportations.Add(transportation);
+                        db.SaveChanges();
+                    }
+                    else if (idsProductsOpas.Contains(db.Products.Where(p => p.Name == nameCargo).FirstOrDefault()))
+                    {
+                        var listTransportOpas = listTransports.Where(p => p.Type == "Цельнометалл").ToList();
+
+                        var tonnage = order.Tonnage;
+
+                        var transport = new Transports();
+
+                        for (var k = 0; k < listTransportOpas.Count(); k++)
+                        {
+                            if (tonnage > listTransportOpas[k].LoadCapacity)
+                                continue;
+
+                            transport = listTransportOpas[k];
+                        }
+
+                        var currentTransportDrivers = db.TransportsDrivers.Where(p => p.Transports.TransportId == transport.TransportId).FirstOrDefault();
+
+                        var distanceValue = distancesList[i];
+
+                        var hoursDistance = (double)distanceValue / AverageSpeed;
+
+                        order.Progress = "В процессе";
+                        db.Orders.Update(order);
+
+                        var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
+                        var arrival = transportation.DepartureDate;
+
+                        transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
+                        transportation.transportsDrivers = currentTransportDrivers;
+
+                        db.Transportations.Add(transportation);
+                        db.SaveChanges();
                     }
                     else
                     {

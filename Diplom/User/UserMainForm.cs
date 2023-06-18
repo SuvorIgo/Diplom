@@ -281,8 +281,14 @@ namespace Diplom.User
                 {
                     label22.Visible = false;
 
+                    label16.MaximumSize = new Size(90, 0);
+
                     label16.Visible = true;
+
+                    label17.MaximumSize = new Size(90, 0);
+
                     label17.Visible = true;
+
                     label18.Visible = true;
                     label19.Visible = true;
 
@@ -291,8 +297,8 @@ namespace Diplom.User
                     label13.Visible = true;
                     label15.Visible = true;
 
-                    label16.Text = currentTransportation.DepartureDate.Value.ToString("dd/MM/yyyy");
-                    label17.Text = currentTransportation.ArrivalDate.Value.Date.ToString("dd/MM/yyyy");
+                    label16.Text = currentTransportation.DepartureDate.Value.ToString("f");
+                    label17.Text = currentTransportation.ArrivalDate.Value.ToString("f");
                     label18.Text = address;
                     label19.Text = currentTransportation.Cost.ToString() + " ₽";
 
