@@ -30,6 +30,9 @@ namespace Diplom.libs.db.entities
         [Column("photo")]
         public string? Photo { get; set; }
 
+        [Column("type")]
+        public string? Type { get; set; }
+
         public List<TransportsDrivers> TransportsDrivers { get; set; } = new();
     }
 }
