@@ -193,7 +193,7 @@ namespace Diplom.Manager
                         var transportation = new Transportations { Orders = db.Orders.Where(p => p.OrderId == order.OrderId).FirstOrDefault(), Cost = Convert.ToInt32(str[i]) };
                         var arrival = transportation.DepartureDate;
 
-                        transportation.ArrivalDate = arrival.Value.AddDays(hoursDistance);
+                        transportation.ArrivalDate = arrival.Value.AddHours(hoursDistance);
 
                         db.Transportations.Add(transportation);
                         db.SaveChanges();
